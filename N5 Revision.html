@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>National 5 Computer Science Revision</title>
+    <style>
+        :root {
+            --primary: #0065BF; /* Scottish Flag Blue */
+            --secondary: #2c3e50;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        header h1 { margin: 0; font-size: 2.5rem; }
+        header p { margin-top: 10px; font-size: 1.2rem; opacity: 0.9; }
+
+        /* Navigation */
+        nav {
+            background-color: var(--secondary);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 15px 20px;
+            color: var(--white);
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: var(--accent);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        section {
+            background: var(--white);
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h3 { color: var(--secondary); margin-top: 20px; }
+
+        ul.key-points {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        ul.key-points li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+        }
+
+        ul.key-points li::before {
+            content: "🔹";
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        /* Code snippets */
+        code {
+            background-color: #f0f0f0;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            color: #c7254e;
+        }
+
+        /* Quiz Section */
+        #quiz-container {
+            border: 2px solid var(--primary);
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #eaf6ff;
+        }
+
+        .question {
+            margin-bottom: 15px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .options label {
+            display: block;
+            margin-bottom: 10px;
+            cursor: pointer;
+            padding: 10px;
+            background: var(--white);
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            transition: background 0.2s;
+        }
+
+        .options label:hover {
+            background-color: #f9f9f9;
+        }
+
+        input[type="radio"] { margin-right: 10px; }
+
+        button#submit-quiz, button#retry-quiz {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button:hover { opacity: 0.9; }
+
+        .result {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .correct-answer { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .incorrect-answer { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--secondary);
+            color: var(--white);
+            margin-top: 40px;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            nav ul { flex-direction: column; }
+            nav ul li a { text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>National 5 Computing Science</h1>
+    <p>SQA Revision Guide & Quiz</p>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="#sdd">Software Design</a></li>
+        <li><a href="#cs">Computer Systems</a></li>
+        <li><a href="databases.html">Database Design</a></li>
+        <li><a href="webDesign.html">Web Design</a></li>
+        <li><a href="#quiz">Test Yourself</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+
+    <section id="sdd">
+        <h2>1. Software Design & Development</h2>
+        <p>This unit focuses on programming concepts, the software development process, and writing code (typically Python or Visual Basic).</p>
+        
+        <h3>The Iterative Development Process</h3>
+        <ul class="key-points">
+            <li><strong>Analysis:</strong> Identifying functional requirements (inputs, processes, outputs) and assumptions.</li>
+            <li><strong>Design:</strong> Planning the solution using pseudocode, structure diagrams, or flowcharts.</li>
+            <li><strong>Implementation:</strong> Writing the code.</li>
+            <li><strong>Testing:</strong> Ensuring the code works (Normal, Extreme, and Exceptional data).</li>
+            <li><strong>Evaluation:</strong> Checking fitness for purpose, efficiency, robustness, and readability.</li>
+        </ul>
+
+        <h3>Key Data Types</h3>
+        <p>You must select the correct data type for variables:</p>
+        <ul>
+            <li><strong>String:</strong> Text (e.g., "Scotland")</li>
+            <li><strong>Integer:</strong> Whole numbers (e.g., 15)</li>
+            <li><strong>Real:</strong> Decimal numbers (e.g., 3.14)</li>
+            <li><strong>Boolean:</strong> True/False</li>
+            <li><strong>Char:</strong> Single character (e.g., 'A')</li>
+            <li><strong>1D Array:</strong> A list of data of the same type.</li>
+        </ul>
+
+        <h3>Standard Algorithms</h3>
+        <p>You need to be able to read and write these from memory:</p>
+        <ul>
+            <li><strong>Input Validation:</strong> Ensuring data is within acceptable limits (using a <code>While</code> loop).</li>
+            <li><strong>Running Total:</strong> Adding a value to a total inside a loop.</li>
+            <li><strong>Traversing an Array:</strong> Using a fixed loop to move through every item in a list.</li>
+        </ul>
+    </section>
+
+    <section id="cs">
+        <h2>2. Computer Systems</h2>
+        <p>Understanding how computers store data and the hardware inside them.</p>
+
+        <h3>Data Representation</h3>
+        <ul class="key-points">
+            <li><strong>Binary:</strong> Storing integers using 1s and 0s.</li>
+            <li><strong>Floating Point:</strong> Used for real numbers. Stored as <em>Mantissa</em> (precision) and <em>Exponent</em> (range).</li>
+            <li><strong>Extended ASCII:</strong> 8-bit code to represent text characters (256 possible characters).</li>
+            <li><strong>Vector Graphics:</strong> Stored as descriptions of shapes (attributes: coordinates, fill colour, line colour). scalable without losing quality.</li>
+            <li><strong>Bit-mapped Graphics:</strong> Stored as a grid of pixels. Quality depends on resolution and colour depth.</li>
+        </ul>
+
+        <h3>Computer Structure</h3>
+        <ul class="key-points">
+            <li><strong>CPU:</strong> The brain. Contains the ALU (Arithmetic Logic Unit), Control Unit, and Registers.</li>
+            <li><strong>Buses:</strong>
+                <ul>
+                    <li><em>Data Bus:</em> Carries data (bi-directional).</li>
+                    <li><em>Address Bus:</em> Carries memory location address (uni-directional).</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>Security & Environment</h3>
+        <ul>
+            <li><strong>Firewall:</strong> Filters incoming/outgoing network traffic.</li>
+            <li><strong>Encryption:</strong> Scrambling data so it is unreadable without a key.</li>
+            <li><strong>GDPR:</strong> Law controlling how personal data is processed.</li>
+            <li><strong>Environmental Impact:</strong> Energy consumption, e-waste, monitor sleep settings.</li>
+        </ul>
+    </section>
+
+    <section id="ddd">
+        <h2>3. Database Design & Development</h2>
+        <p>Creating and managing relational databases.</p>
+
+        <h3>Analysis & Design</h3>
+        <ul class="key-points">
+            <li><strong>Entities & Attributes:</strong> The object (e.g., Customer) and its details (Name, Address).</li>
+            <li><strong>Primary Key:</strong> A unique identifier for a record.</li>
+            <li><strong>Foreign Key:</strong> A field used to link two tables together.</li>
+            <li><strong>Validation Checks:</strong> Presence check, Restricted choice, Field length, Range check.</li>
+        </ul>
+
+        <h3>SQL (Structured Query Language)</h3>
+        <p>You must be able to write SQL queries:</p>
+        <div style="background:#2c3e50; color:#fff; padding:15px; border-radius:5px;">
+            <p><strong>SELECT</strong> surname, town<br>
+            <strong>FROM</strong> Customer<br>
+            <strong>WHERE</strong> age > 18 <strong>AND</strong> town = 'Aberdeen'<br>
+            <strong>ORDER BY</strong> surname ASC;</p>
+        </div>
+        <p><em>Note: Know how to use INSERT, UPDATE, and DELETE commands as well.</em></p>
+    </section>
+
+    <section id="wdd">
+        <h2>4. Web Design & Development</h2>
+        <p>Building websites using HTML, CSS, and JavaScript.</p>
+
+        <h3>Languages</h3>
+        <ul class="key-points">
+            <li><strong>HTML (Structure):</strong> Defines the content (headings, paragraphs, images, links).
+                <br><em>Tags:</em> <code>&lt;h1&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;div&gt;</code>, <code>&lt;a href="..."&gt;</code>, <code>&lt;img src="..."&gt;</code>.</li>
+            <li><strong>CSS (Style):</strong> Defines the look (colour, font, layout). Can be Inline, Internal, or External.
+                <br><em>Selectors:</em> Element (<code>p {}</code>), Class (<code>.style {}</code>), ID (<code>#header {}</code>).</li>
+            <li><strong>JavaScript (Interactivity):</strong> Handles events like <code>onmouseover</code> or <code>onclick</code>.</li>
+        </ul>
+
+        <h3>Design Concepts</h3>
+        <ul>
+            <li><strong>Wireframes:</strong> A visual blueprint of the page layout before coding.</li>
+            <li><strong>Low-fidelity prototyping:</strong> Sketches/paper versions of the site.</li>
+            <li><strong>File Formats:</strong>
+                <ul>
+                    <li><em>Audio:</em> WAV (high quality, large), MP3 (compressed).</li>
+                    <li><em>Graphics:</em> JPEG (photos, lossy), PNG (transparency, lossless), GIF (simple animation).</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <section id="quiz">
+        <h2>📝 N5 Revision Quiz</h2>
+        <p>Test your knowledge with these mixed questions.</p>
+        
+        <div id="quiz-container">
+            </div>
+        
+        <button id="submit-quiz" onclick="calculateScore()">Submit Answers</button>
+        <button id="retry-quiz" onclick="loadQuiz()" style="display:none; background-color: #555;">Retry Quiz</button>
+        <div id="result-display" class="result" style="display:none;"></div>
+    </section>
+
+</div>
+
+<footer>
+    <p>Created for National 5 Computer Science Students | Scotland</p>
+</footer>
+
+<script>
+    const questions = [
+        {
+            question: "1. Which part of the processor is responsible for performing calculations and logical comparisons?",
+            options: ["Control Unit", "Registers", "ALU (Arithmetic Logic Unit)", "Data Bus"],
+            answer: 2
+        },
+        {
+            question: "2. In floating point representation, what does the 'Mantissa' determine?",
+            options: ["The range of the number", "The precision of the number", "The sign (positive/negative)", "The memory address"],
+            answer: 1
+        },
+        {
+            question: "3. Which SQL command is used to change data in an existing record?",
+            options: ["INSERT", "SELECT", "UPDATE", "CHANGE"],
+            answer: 2
+        },
+        {
+            question: "4. Which variable type is best suited to store a telephone number (e.g. '0131 555 1234')?",
+            options: ["Integer", "String", "Real", "Boolean"],
+            answer: 1
+        },
+        {
+            question: "5. In the standard algorithm for Input Validation, which loop structure is typically used?",
+            options: ["Fixed Loop (For)", "Conditional Loop (While)", "If Statement", "Array Traversal"],
+            answer: 1
+        },
+        {
+            question: "6. Which graphic file format supports transparency and is lossless?",
+            options: ["JPEG", "MP3", "PNG", "TXT"],
+            answer: 2
+        },
+        {
+            question: "7. Which bus carries the location of data in memory from the processor?",
+            options: ["Data Bus", "Address Bus", "Control Bus", "Universal Serial Bus"],
+            answer: 1
+        },
+        {
+            question: "8. In CSS, how do you select an element with the specific ID 'main-title'?",
+            options: [".main-title", "main-title", "#main-title", "*main-title"],
+            answer: 2
+        },
+        {
+            question: "9. Which test data type covers the boundaries of acceptable input?",
+            options: ["Normal", "Extreme", "Exceptional", "Syntax"],
+            answer: 1
+        },
+        {
+            question: "10. What is the main purpose of a Foreign Key in a database?",
+            options: ["To uniquely identify a record", "To sort the data alphabetically", "To link two tables together", "To validata data entry"],
+            answer: 2
+        }
+    ];
+
+    function loadQuiz() {
+        const container = document.getElementById('quiz-container');
+        container.innerHTML = '';
+        document.getElementById('result-display').style.display = 'none';
+        document.getElementById('submit-quiz').style.display = 'inline-block';
+        document.getElementById('retry-quiz').style.display = 'none';
+
+        questions.forEach((q, index) => {
+            const qDiv = document.createElement('div');
+            qDiv.classList.add('question-block');
+            
+            let optionsHtml = '';
+            q.options.forEach((opt, i) => {
+                optionsHtml += `
+                    <label>
+                        <input type="radio" name="q${index}" value="${i}"> ${opt}
+                    </label>
+                `;
+            });
+
+            qDiv.innerHTML = `
+                <div class="question">${q.question}</div>
+                <div class="options">${optionsHtml}</div>
+                <div id="feedback-${index}" style="margin-top:10px; font-weight:bold;"></div>
+                <hr style="border:0; border-top:1px solid #ccc; margin:20px 0;">
+            `;
+            container.appendChild(qDiv);
+        });
+    }
+
+    function calculateScore() {
+        let score = 0;
+        
+        questions.forEach((q, index) => {
+            const selected = document.querySelector(`input[name="q${index}"]:checked`);
+            const feedback = document.getElementById(`feedback-${index}`);
+            
+            if (selected) {
+                if (parseInt(selected.value) === q.answer) {
+                    score++;
+                    feedback.style.color = 'green';
+                    feedback.innerText = "✓ Correct";
+                } else {
+                    feedback.style.color = 'red';
+                    feedback.innerText = `✗ Incorrect. The correct answer was: ${q.options[q.answer]}`;
+                }
+            } else {
+                feedback.style.color = 'orange';
+                feedback.innerText = `○ Skipped. The correct answer was: ${q.options[q.answer]}`;
+            }
+        });
+
+        const resultDisplay = document.getElementById('result-display');
+        resultDisplay.style.display = 'block';
+        
+        let message = "";
+        if(score === questions.length) message = "Perfect Score! Outstanding!";
+        else if(score > 7) message = "Great job! You are exam ready.";
+        else if(score > 4) message = "Good effort. Review the notes above to boost your score.";
+        else message = "Keep studying! Use the notes above to revise.";
+
+        resultDisplay.innerHTML = `You scored ${score} out of ${questions.length}.<br>${message}`;
+        
+        // Toggle buttons
+        document.getElementById('submit-quiz').style.display = 'none';
+        document.getElementById('retry-quiz').style.display = 'inline-block';
+        
+        // Scroll to result
+        resultDisplay.scrollIntoView({behavior: "smooth"});
+    }
+
+    // Load quiz on start
+    window.onload = loadQuiz;
+</script>
+
+</body>
+</html>

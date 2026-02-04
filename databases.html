@@ -1,0 +1,502 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N5 Database Revision Guide</title>
+       <style>
+        :root {
+            --primary: #0065BF; /* Scottish Flag Blue */
+            --secondary: #2c3e50;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        header h1 { margin: 0; font-size: 2.5rem; }
+        header p { margin-top: 10px; font-size: 1.2rem; opacity: 0.9; }
+
+        /* Navigation */
+        nav {
+            background-color: var(--secondary);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 15px 20px;
+            color: var(--white);
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: var(--accent);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        section {
+            background: var(--white);
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h3 { color: var(--secondary); margin-top: 20px; }
+
+        ul.key-points {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        ul.key-points li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+        }
+
+        ul.key-points li::before {
+            content: "🔹";
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        /* Code snippets */
+        code {
+            background-color: #f0f0f0;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            color: #c7254e;
+        }
+
+        /* Quiz Section */
+        #quiz-container {
+            border: 2px solid var(--primary);
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #eaf6ff;
+        }
+
+        .question {
+            margin-bottom: 15px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .options label {
+            display: block;
+            margin-bottom: 10px;
+            cursor: pointer;
+            padding: 10px;
+            background: var(--white);
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            transition: background 0.2s;
+        }
+
+        .options label:hover {
+            background-color: #f9f9f9;
+        }
+
+        input[type="radio"] { margin-right: 10px; }
+
+        button#submit-quiz, button#retry-quiz {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button:hover { opacity: 0.9; }
+
+        .result {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .correct-answer { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .incorrect-answer { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--secondary);
+            color: var(--white);
+            margin-top: 40px;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            nav ul { flex-direction: column; }
+            nav ul li a { text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>N5 Database Design & Development</h1>
+    <p>Complete Revision & SQL Guide</p>
+</header>
+
+<nav>
+    <ul>
+	<li><a href="N5 Revision.html">Home</a></li>  
+        <li><a href="#analysis">Analysis & Design</a></li>
+        <li><a href="#select">Searching (SELECT)</a></li>
+        <li><a href="#modify">Modifying Data</a></li>
+        <li><a href="#quiz">Test Yourself</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+
+    <section id="analysis">
+        <h2>1. Analysis & Design</h2>
+        <p>Before creating a database, you must plan it. This involves identifying the data requirements and how tables link together.</p>
+
+        <h3>Entities & Attributes</h3>
+        <ul>
+            <li><strong>Entity:</strong> The thing we store information about (e.g., a <em>Student</em>, a <em>Car</em>, a <em>Movie</em>). This becomes the <strong>Table</strong> name.</li>
+            <li><strong>Attribute:</strong> The specific details of the entity (e.g., <em>Name</em>, <em>Age</em>, <em>Cost</em>). These become the <strong>Fields/Columns</strong>.</li>
+        </ul>
+
+        
+
+        <h3>Keys & Relationships</h3>
+        <p>Relational databases split data into multiple tables to reduce data duplication (redundancy).</p>
+        <ul>
+            <li><strong>Primary Key (PK):</strong> A field that uniquely identifies every record in a table (e.g., <code>DriverID</code>). It cannot be left blank (Null).</li>
+            <li><strong>Foreign Key (FK):</strong> A field in one table that links to the Primary Key of another table.</li>
+            <li><strong>Relationship:</strong> National 5 focuses on <strong>One-to-Many</strong> relationships.
+                <br><em>Example: One Teacher has Many Pupils.</em></li>
+        </ul>
+
+        <h3>The Data Dictionary</h3>
+        <p>A design document describing the database structure.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Attribute Name</th>
+                    <th>Data Type</th>
+                    <th>Size</th>
+                    <th>Key?</th>
+                    <th>Validation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>FilmID</td>
+                    <td>Integer</td>
+                    <td>-</td>
+                    <td>PK</td>
+                    <td>Unique</td>
+                </tr>
+                <tr>
+                    <td>Title</td>
+                    <td>Text</td>
+                    <td>50</td>
+                    <td>-</td>
+                    <td>Presence Check</td>
+                </tr>
+                <tr>
+                    <td>Rating</td>
+                    <td>Text</td>
+                    <td>5</td>
+                    <td>-</td>
+                    <td>Restricted Choice (U, PG, 12, 15, 18)</td>
+                </tr>
+                <tr>
+                    <td>Duration</td>
+                    <td>Integer</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>Range (0 to 300)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Validation Types</h3>
+        <ul>
+            <li><strong>Presence Check:</strong> Ensures the field is not left empty.</li>
+            <li><strong>Range Check:</strong> Ensures numbers are within limits (e.g., Age 0-120).</li>
+            <li><strong>Restricted Choice:</strong> User selects from a specific list (e.g., Small, Medium, Large).</li>
+            <li><strong>Length Check:</strong> Ensures text has a specific number of characters (e.g., Password must be 8+ chars).</li>
+        </ul>
+    </section>
+
+    <section id="select">
+        <h2>2. Searching with SQL (SELECT)</h2>
+        <p>The <code>SELECT</code> command is used to retrieve data from the database. It never changes the data, only views it.</p>
+        
+        
+
+        <h3>The 4 Keywords of Search</h3>
+        <div class="sql-box">
+            <span class="keyword">SELECT</span> field1, field2 <br>
+            <span class="keyword">FROM</span> TableName <br>
+            <span class="keyword">WHERE</span> criteria <br>
+            <span class="keyword">ORDER BY</span> field <span class="keyword">ASC</span>;
+        </div>
+
+        <h3>Example 1: Simple Search</h3>
+        <p>Find the names of all 'Action' movies.</p>
+        <div class="sql-box">
+            <span class="keyword">SELECT</span> title, director <br>
+            <span class="keyword">FROM</span> Cinema <br>
+            <span class="keyword">WHERE</span> genre = <span class="value">'Action'</span>;
+        </div>
+
+        <h3>Example 2: Complex Criteria (AND / OR)</h3>
+        <p>Find movies that are 'Comedy' <strong>AND</strong> have a rating higher than 8.</p>
+        <div class="sql-box">
+            <span class="keyword">SELECT</span> title, rating <br>
+            <span class="keyword">FROM</span> Cinema <br>
+            <span class="keyword">WHERE</span> genre = <span class="value">'Comedy'</span> <span class="keyword">AND</span> score > <span class="number">8</span>;
+        </div>
+        <p><em>Note: Text uses single quotes (<code>'text'</code>). Numbers do not.</em></p>
+
+        <h3>Example 3: Sorting (ORDER BY)</h3>
+        <p>Find all customers and sort them alphabetically by Surname (A-Z), then by Age (Oldest to Youngest).</p>
+        <div class="sql-box">
+            <span class="keyword">SELECT</span> firstname, surname, age <br>
+            <span class="keyword">FROM</span> Customer <br>
+            <span class="keyword">ORDER BY</span> surname <span class="keyword">ASC</span>, age <span class="keyword">DESC</span>;
+        </div>
+        <ul>
+            <li><strong>ASC:</strong> Ascending (A-Z, 0-9)</li>
+            <li><strong>DESC:</strong> Descending (Z-A, 9-0)</li>
+        </ul>
+
+        <h3>Example 4: Equi-Join (Two Tables)</h3>
+        <p>Sometimes you need data from two linked tables. You must match the keys in the <code>WHERE</code> clause.</p>
+        <div class="sql-box">
+            <span class="keyword">SELECT</span> Player.name, Team.team_name <br>
+            <span class="keyword">FROM</span> Player, Team <br>
+            <span class="keyword">WHERE</span> Player.team_id = Team.ID <br>
+            <span class="keyword">AND</span> Team.city = <span class="value">'Glasgow'</span>;
+        </div>
+    </section>
+
+    <section id="modify">
+        <h2>3. Modifying Data with SQL</h2>
+        <p>These commands change the actual data in the database.</p>
+
+        <h3>INSERT INTO (Adding a new record)</h3>
+        <p>Adds a new row to a table.</p>
+        <div class="sql-box">
+            <span class="keyword">INSERT INTO</span> Customer (name, town, points) <br>
+            <span class="keyword">VALUES</span> (<span class="value">'John Smith'</span>, <span class="value">'Dundee'</span>, <span class="number">50</span>);
+        </div>
+
+        <h3>UPDATE (Editing existing records)</h3>
+        <p>Changes data in a row. <strong>Warning:</strong> Always use a <code>WHERE</code> clause or you might update every row in the table!</p>
+        <div class="sql-box">
+            <span class="keyword">UPDATE</span> Customer <br>
+            <span class="keyword">SET</span> points = <span class="number">100</span>, town = <span class="value">'Edinburgh'</span> <br>
+            <span class="keyword">WHERE</span> customerID = <span class="number">45</span>;
+        </div>
+
+        <h3>DELETE (Removing records)</h3>
+        <p>Removes a row permanently.</p>
+        <div class="sql-box">
+            <span class="keyword">DELETE FROM</span> Customer <br>
+            <span class="keyword">WHERE</span> customerID = <span class="number">45</span>;
+        </div>
+    </section>
+
+    <section id="quiz">
+        <h2>📝 Database & SQL Quiz</h2>
+        <p>Test your knowledge of keys, validation, and SQL syntax.</p>
+        
+        <div id="quiz-container">
+            </div>
+        
+        <button id="submit-quiz" onclick="calculateScore()">Submit Answers</button>
+        <button id="retry-quiz" onclick="loadQuiz()" style="display:none; background-color: #555;">Retry Quiz</button>
+        <div id="result-display" class="result" style="display:none;"></div>
+    </section>
+
+</div>
+
+<footer>
+    <p>Created for National 5 Computer Science | Database Unit</p>
+</footer>
+
+<script>
+    const questions = [
+        {
+            question: "1. Which key uniquely identifies every record in a table?",
+            options: ["Foreign Key", "Primary Key", "Secondary Key", "Door Key"],
+            answer: 1
+        },
+        {
+            question: "2. Which SQL command is used to ADD a new record?",
+            options: ["ADD RECORD", "UPDATE", "INSERT INTO", "SELECT"],
+            answer: 2
+        },
+        {
+            question: "3. You need to ensure a user selects 'Male', 'Female' or 'Other'. Which validation is this?",
+            options: ["Range Check", "Presence Check", "Restricted Choice", "Length Check"],
+            answer: 2
+        },
+        {
+            question: "4. Look at this query: SELECT * FROM Cars ORDER BY Price DESC. How are the results sorted?",
+            options: ["Cheapest to most expensive", "Most expensive to cheapest", "Alphabetically by Make", "Randomly"],
+            answer: 1
+        },
+        {
+            question: "5. What is missing from this query? UPDATE Students SET age=16;",
+            options: ["The WHERE clause (it will update EVERY student)", "The FROM clause", "The SELECT clause", "Nothing, it is correct"],
+            answer: 0
+        },
+        {
+            question: "6. Which relationship type is studied at National 5 level?",
+            options: ["One-to-One", "Many-to-Many", "One-to-Many", "None-to-None"],
+            answer: 2
+        },
+        {
+            question: "7. In a Data Dictionary, what attribute property ensures a field cannot be left blank?",
+            options: ["Unique", "Restricted Choice", "Primary Key", "Presence Check"],
+            answer: 3
+        },
+        {
+            question: "8. Which punctuation is used around text values in SQL (e.g. Harry Potter)?",
+            options: ["Double Quotes", "Single Quotes", "Brackets", "Hashtags"],
+            answer: 1
+        },
+        {
+            question: "9. When linking two tables in a query (Equi-Join), which two fields are usually matched?",
+            options: ["Date and Time", "Name and Address", "Primary Key and Foreign Key", "Price and Cost"],
+            answer: 2
+        },
+        {
+            question: "10. Which SQL command allows you to view data without changing it?",
+            options: ["SELECT", "UPDATE", "DELETE", "INSERT"],
+            answer: 0
+        }
+    ];
+
+    function loadQuiz() {
+        const container = document.getElementById('quiz-container');
+        container.innerHTML = '';
+        document.getElementById('result-display').style.display = 'none';
+        document.getElementById('submit-quiz').style.display = 'inline-block';
+        document.getElementById('retry-quiz').style.display = 'none';
+
+        questions.forEach((q, index) => {
+            const qDiv = document.createElement('div');
+            qDiv.classList.add('question-block');
+            
+            let optionsHtml = '';
+            q.options.forEach((opt, i) => {
+                optionsHtml += `
+                    <label>
+                        <input type="radio" name="q${index}" value="${i}"> ${opt}
+                    </label>
+                `;
+            });
+
+            qDiv.innerHTML = `
+                <div class="question">${q.question}</div>
+                <div class="options">${optionsHtml}</div>
+                <div id="feedback-${index}" style="margin-top:10px; font-weight:bold;"></div>
+                <hr style="border:0; border-top:1px solid #ccc; margin:20px 0;">
+            `;
+            container.appendChild(qDiv);
+        });
+    }
+
+    function calculateScore() {
+        let score = 0;
+        
+        questions.forEach((q, index) => {
+            const selected = document.querySelector(`input[name="q${index}"]:checked`);
+            const feedback = document.getElementById(`feedback-${index}`);
+            
+            if (selected) {
+                if (parseInt(selected.value) === q.answer) {
+                    score++;
+                    feedback.style.color = 'green';
+                    feedback.innerText = "✓ Correct";
+                } else {
+                    feedback.style.color = 'red';
+                    feedback.innerText = `✗ Incorrect. The correct answer was: ${q.options[q.answer]}`;
+                }
+            } else {
+                feedback.style.color = 'orange';
+                feedback.innerText = `○ Skipped. The correct answer was: ${q.options[q.answer]}`;
+            }
+        });
+
+        const resultDisplay = document.getElementById('result-display');
+        resultDisplay.style.display = 'block';
+        resultDisplay.style.backgroundColor = score > 7 ? '#d4edda' : '#f8d7da';
+        resultDisplay.style.color = score > 7 ? '#155724' : '#721c24';
+        
+        resultDisplay.innerHTML = `You scored ${score} out of ${questions.length}.`;
+        
+        document.getElementById('submit-quiz').style.display = 'none';
+        document.getElementById('retry-quiz').style.display = 'inline-block';
+        resultDisplay.scrollIntoView({behavior: "smooth"});
+    }
+
+    window.onload = loadQuiz;
+</script>
+
+</body>
+</html>

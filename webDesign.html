@@ -1,0 +1,509 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>National 5 Web Design Revision</title>
+        <style>
+        :root {
+            --primary: #0065BF; /* Scottish Flag Blue */
+            --secondary: #2c3e50;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        header h1 { margin: 0; font-size: 2.5rem; }
+        header p { margin-top: 10px; font-size: 1.2rem; opacity: 0.9; }
+
+        /* Navigation */
+        nav {
+            background-color: var(--secondary);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 15px 20px;
+            color: var(--white);
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: var(--accent);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        section {
+            background: var(--white);
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h3 { color: var(--secondary); margin-top: 20px; }
+
+        ul.key-points {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        ul.key-points li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+        }
+
+        ul.key-points li::before {
+            content: "🔹";
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        /* Code snippets */
+        code {
+            background-color: #f0f0f0;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            color: #c7254e;
+        }
+
+        /* Quiz Section */
+        #quiz-container {
+            border: 2px solid var(--primary);
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #eaf6ff;
+        }
+
+        .question {
+            margin-bottom: 15px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .options label {
+            display: block;
+            margin-bottom: 10px;
+            cursor: pointer;
+            padding: 10px;
+            background: var(--white);
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            transition: background 0.2s;
+        }
+
+        .options label:hover {
+            background-color: #f9f9f9;
+        }
+
+        input[type="radio"] { margin-right: 10px; }
+
+        button#submit-quiz, button#retry-quiz {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button:hover { opacity: 0.9; }
+
+        .result {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .correct-answer { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .incorrect-answer { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--secondary);
+            color: var(--white);
+            margin-top: 40px;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            nav ul { flex-direction: column; }
+            nav ul li a { text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>N5 Web Design & Development</h1>
+    <p>Analysis, HTML, CSS, JavaScript & Testing</p>
+</header>
+
+<nav>
+    <ul>
+	<li><a href="N5 Revision.html">Home</a></li>        
+	<li><a href="#analysis">Analysis & Design</a></li>
+        <li><a href="#html">HTML & Media</a></li>
+        <li><a href="#css">CSS Styling</a></li>
+        <li><a href="#js">JavaScript</a></li>
+        <li><a href="#testing">Testing</a></li>
+        <li><a href="#quiz">Quiz</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+
+    <section id="analysis">
+        <h2>1. Analysis & Design</h2>
+        
+        <h3>Requirements</h3>
+        <p>Before building a website, you must identify what it needs to do.</p>
+        <ul class="key-points">
+            <li><strong>End-User Requirements:</strong> What the visitors of the site want to do (e.g., "Users should be able to view a video of the product").</li>
+            <li><strong>Functional Requirements:</strong> What the website must technically do/contain (e.g., "The site must have a video player on the home page").</li>
+        </ul>
+
+        <h3>Design Techniques</h3>
+        <ul class="key-points">
+            <li><strong>Wireframes:</strong> A visual blueprint showing the structure of a page. It includes the layout of text, images, and navigation but usually lacks color or specific content.</li>
+            <li><strong>Low-Fidelity Prototypes:</strong> Often paper-based sketches showing how a user navigates from page to page. It tests the <em>flow</em> of the site.</li>
+        </ul>
+        
+
+[Image of website wireframe example]
+
+    </section>
+
+    <section id="html">
+        <h2>2. HTML Structure & Media</h2>
+
+        <h3>Hyperlinks</h3>
+        <ul>
+            <li><strong>Internal Hyperlink:</strong> Links to a page <em>within</em> the same website.
+                <br><code>&lt;a href="contact.html"&gt;Contact Us&lt;/a&gt;</code></li>
+            <li><strong>External Hyperlink:</strong> Links to a different website (requires full URL).
+                <br><code>&lt;a href="https://www.google.com"&gt;Google&lt;/a&gt;</code></li>
+        </ul>
+
+        <h3>Inserting Media</h3>
+        <p>You must know the tags and attributes for inserting media.</p>
+        
+        <h4>Images (img)</h4>
+        <div class="code-box">
+            &lt;<span class="tag">img</span> <span class="attr">src</span>=<span class="val">"cat.jpg"</span> <span class="attr">alt</span>=<span class="val">"A picture of a cat"</span> <span class="attr">width</span>=<span class="val">"300"</span> <span class="attr">height</span>=<span class="val">"200"</span>&gt;
+        </div>
+
+        <h4>Audio (audio)</h4>
+        <div class="code-box">
+            &lt;<span class="tag">audio</span> <span class="attr">controls</span>&gt;<br>
+            &nbsp;&nbsp;&lt;<span class="tag">source</span> <span class="attr">src</span>=<span class="val">"music.mp3"</span> <span class="attr">type</span>=<span class="val">"audio/mpeg"</span>&gt;<br>
+            &lt;/<span class="tag">audio</span>&gt;
+        </div>
+
+        <h4>Video (video)</h4>
+        <div class="code-box">
+            &lt;<span class="tag">video</span> <span class="attr">width</span>=<span class="val">"320"</span> <span class="attr">height</span>=<span class="val">"240"</span> <span class="attr">controls</span>&gt;<br>
+            &nbsp;&nbsp;&lt;<span class="tag">source</span> <span class="attr">src</span>=<span class="val">"movie.mp4"</span> <span class="attr">type</span>=<span class="val">"video/mp4"</span>&gt;<br>
+            &lt;/<span class="tag">video</span>&gt;
+        </div>
+    </section>
+
+    <section id="css">
+        <h2>3. CSS (Cascading Style Sheets)</h2>
+        <p>CSS controls the presentation (fonts, colors, layout) of the web page.</p>
+
+        <h3>Three Methods of Adding CSS</h3>
+        <ol>
+            <li><strong>Inline:</strong> Written directly inside the HTML tag. <em>(Lowest priority)</em>
+                <br><code>&lt;p style="color: blue;"&gt;</code></li>
+            <li><strong>Internal:</strong> Written inside <code>&lt;style&gt;</code> tags within the <code>&lt;head&gt;</code>.</li>
+            <li><strong>External:</strong> Written in a separate <code>.css</code> file and linked. <em>(Best practice)</em>
+                <br><code>&lt;link rel="stylesheet" href="styles.css"&gt;</code></li>
+        </ol>
+
+        <h3>Selectors: ID vs Class</h3>
+        <table>
+            <tr>
+                <th>Selector Type</th>
+                <th>HTML Attribute</th>
+                <th>CSS Symbol</th>
+                <th>Usage</th>
+            </tr>
+            <tr>
+                <td><strong>Element</strong></td>
+                <td>N/A</td>
+                <td>None (e.g., <code>p {}</code>)</td>
+                <td>Styles ALL elements of that type.</td>
+            </tr>
+            <tr>
+                <td><strong>ID</strong></td>
+                <td><code>id="logo"</code></td>
+                <td>Hashtag (e.g., <code>#logo {}</code>)</td>
+                <td>Used for ONE unique element per page.</td>
+            </tr>
+            <tr>
+                <td><strong>Class</strong></td>
+                <td><code>class="big-text"</code></td>
+                <td>Dot (e.g., <code>.big-text {}</code>)</td>
+                <td>Used for MANY elements that share a style.</td>
+            </tr>
+        </table>
+
+        <h3>Common Properties</h3>
+        <div class="code-box">
+            <span class="css-sel">body</span> {<br>
+            &nbsp;&nbsp;<span class="css-prop">font-family</span>: <span class="val">Arial</span>;<br>
+            &nbsp;&nbsp;<span class="css-prop">background-color</span>: <span class="val">lightgray</span>;<br>
+            }<br><br>
+            <span class="css-sel">.highlight</span> {<br>
+            &nbsp;&nbsp;<span class="css-prop">color</span>: <span class="val">red</span>;<br>
+            &nbsp;&nbsp;<span class="css-prop">text-align</span>: <span class="val">center</span>;<br>
+            &nbsp;&nbsp;<span class="css-prop">font-size</span>: <span class="val">16px</span>;<br>
+            }
+        </div>
+    </section>
+
+    <section id="js">
+        <h2>4. JavaScript Interaction</h2>
+        <p>JavaScript handles behaviour and interactivity. At N5, you deal with mouse events.</p>
+
+        <h3>Common Events</h3>
+        <ul>
+            <li><code>onmouseover</code>: Triggered when the mouse pointer hovers <strong>over</strong> an element.</li>
+            <li><code>onmouseout</code>: Triggered when the mouse pointer leaves (moves <strong>out</strong> of) an element.</li>
+            <li><code>onclick</code>: Triggered when the user clicks an element.</li>
+        </ul>
+
+        <h3>Common Tasks</h3>
+        <p><strong>1. Changing an Image (Rollover Effect)</strong></p>
+        <div class="code-box">
+            &lt;<span class="tag">img</span> <span class="attr">src</span>=<span class="val">"pic1.jpg"</span> <br>
+            &nbsp;&nbsp;<span class="attr">onmouseover</span>=<span class="val">"this.src='pic2.jpg'"</span> <br>
+            &nbsp;&nbsp;<span class="attr">onmouseout</span>=<span class="val">"this.src='pic1.jpg'"</span>&gt;
+        </div>
+
+        <p><strong>2. Changing CSS Styles</strong></p>
+        <div class="code-box">
+            &lt;<span class="tag">h1</span> <span class="attr">onclick</span>=<span class="val">"this.style.color='red'"</span>&gt;Click me!&lt;/<span class="tag">h1</span>&gt;
+        </div>
+    </section>
+
+    <section id="testing">
+        <h2>5. Testing & Evaluation</h2>
+        
+        <h3>Testing</h3>
+        <p>After building the site, you must check it works correctly.</p>
+        <ul>
+            <li><strong>Hyperlinks:</strong> Check all internal and external links go to the correct destination.</li>
+            <li><strong>Media:</strong> Ensure images, audio, and video load and play correctly.</li>
+            <li><strong>Consistency:</strong> Ensure fonts and colours are the same across all pages (usually handled by External CSS).</li>
+        </ul>
+
+        <h3>Evaluation</h3>
+        <p>Reviewing the final product against the initial plan.</p>
+        <ul>
+            <li><strong>Fitness for Purpose:</strong> Does the website meet all the Functional Requirements?</li>
+            <li><strong>User Interface:</strong> Is the navigation easy to understand? Is the layout consistent?</li>
+        </ul>
+    </section>
+
+    <section id="quiz">
+        <h2>📝 Revision Quiz</h2>
+        <p>Test your knowledge on all the topics above.</p>
+        
+        <div id="quiz-container">
+            </div>
+        
+        <button id="submit-quiz" onclick="calculateScore()">Submit Answers</button>
+        <button id="retry-quiz" onclick="loadQuiz()" style="display:none; background-color: #7f8c8d;">Retry Quiz</button>
+        <div id="result-display" class="result"></div>
+    </section>
+
+</div>
+
+<footer>
+    <p>Created for National 5 Computing Science | SQA Revision</p>
+</footer>
+
+<script>
+    const questions = [
+        {
+            question: "1. Which CSS method is considered 'best practice' for ensuring consistency across multiple pages?",
+            options: ["Inline CSS", "Internal CSS", "External CSS", "Integrated CSS"],
+            answer: 2
+        },
+        {
+            question: "2. Which HTML tag is used to create a hyperlink?",
+            options: ["<link>", "<a>", "<hlink>", "<href>"],
+            answer: 1
+        },
+        {
+            question: "3. In CSS, which symbol is used to select an ID?",
+            options: [". (dot)", "# (hash)", "* (asterisk)", "@ (at)"],
+            answer: 1
+        },
+        {
+            question: "4. Which JavaScript event would you use to trigger code when the mouse leaves an image?",
+            options: ["onmouseover", "onmouseleave", "onmouseout", "onclick"],
+            answer: 2
+        },
+        {
+            question: "5. Which of these is a Functional Requirement?",
+            options: ["The website must display a video of the band.", "The user wants to see tour dates.", "The website should look modern.", "The user wants to buy tickets."],
+            answer: 0
+        },
+        {
+            question: "6. What does a Wireframe typically show?",
+            options: ["The exact colours and fonts used.", "The page layout and structure.", "The flow between different pages.", "The JavaScript code."],
+            answer: 1
+        },
+        {
+            question: "7. Which attribute is required in the <video> tag to show play/pause buttons?",
+            options: ["buttons='true'", "src='controls'", "controls", "autoplay"],
+            answer: 2
+        },
+        {
+            question: "8. Why do we use 'alt' text in image tags?",
+            options: ["To make the image load faster.", "To style the image border.", "For accessibility and if the image fails to load.", "To link the image to another page."],
+            answer: 2
+        },
+        {
+            question: "9. To select all elements with 'class=highlight', which CSS selector do you use?",
+            options: ["#highlight", "highlight", ".highlight", "*highlight"],
+            answer: 2
+        },
+        {
+            question: "10. Which test ensures the website matches the initial design?",
+            options: ["Fitness for Purpose", "Media Testing", "User Interface Testing", "Load Testing"],
+            answer: 0
+        }
+    ];
+
+    function loadQuiz() {
+        const container = document.getElementById('quiz-container');
+        container.innerHTML = '';
+        document.getElementById('result-display').style.display = 'none';
+        document.getElementById('submit-quiz').style.display = 'inline-block';
+        document.getElementById('retry-quiz').style.display = 'none';
+
+        questions.forEach((q, index) => {
+            const qDiv = document.createElement('div');
+            qDiv.style.marginBottom = "20px";
+            
+            let optionsHtml = '';
+            q.options.forEach((opt, i) => {
+                optionsHtml += `
+                    <label>
+                        <input type="radio" name="q${index}" value="${i}"> ${opt}
+                    </label>
+                `;
+            });
+
+            qDiv.innerHTML = `
+                <div class="question">${q.question}</div>
+                <div class="options">${optionsHtml}</div>
+                <div id="feedback-${index}" style="margin-top:5px; font-weight:bold; font-size:0.9em;"></div>
+                <hr style="border:0; border-top:1px solid #e0e0e0; margin-top:15px;">
+            `;
+            container.appendChild(qDiv);
+        });
+    }
+
+    function calculateScore() {
+        let score = 0;
+        
+        questions.forEach((q, index) => {
+            const selected = document.querySelector(`input[name="q${index}"]:checked`);
+            const feedback = document.getElementById(`feedback-${index}`);
+            
+            if (selected) {
+                if (parseInt(selected.value) === q.answer) {
+                    score++;
+                    feedback.style.color = 'green';
+                    feedback.innerText = "✓ Correct";
+                } else {
+                    feedback.style.color = '#c0392b';
+                    feedback.innerText = `✗ Incorrect. The correct answer was: ${q.options[q.answer]}`;
+                }
+            } else {
+                feedback.style.color = '#d35400';
+                feedback.innerText = `○ Skipped. The correct answer was: ${q.options[q.answer]}`;
+            }
+        });
+
+        const resultDisplay = document.getElementById('result-display');
+        resultDisplay.style.display = 'block';
+        
+        if (score > 7) {
+            resultDisplay.className = "result good";
+            resultDisplay.innerHTML = `Excellent Work! You scored ${score} out of ${questions.length}.`;
+        } else {
+            resultDisplay.className = "result bad";
+            resultDisplay.innerHTML = `Good effort. You scored ${score} out of ${questions.length}. Review the notes above to improve.`;
+        }
+        
+        document.getElementById('submit-quiz').style.display = 'none';
+        document.getElementById('retry-quiz').style.display = 'inline-block';
+        resultDisplay.scrollIntoView({behavior: "smooth"});
+    }
+
+    // Initialize
+    window.onload = loadQuiz;
+</script>
+
+</body>
+</html>
