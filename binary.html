@@ -5,104 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Binary Integers Quiz</title>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
   <style>
-    :root {
-      --navy: #263d91;
-      --deep-navy: #17245f;
-      --pink: #e8528b;
-      --magenta: #c82d67;
-      --pale-blue: #dbe9f8;
-      --ink: #263044;
-      --success: #087f5b;
-      --danger: #bb2d3b;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      width: 100%;
-      min-height: calc(100 * min(var(--vh, 1vh), 1vh));
-      font-family: "Work Sans", sans-serif;
-      color: var(--ink);
-      overflow-x: hidden;
-    }
-    .app-shell {
-      width: 100%;
-      min-height: calc(100 * min(var(--vh, 1vh), 1vh));
-      position: relative;
-      overflow: hidden;
-    }
-    .app-shell::after {
-      content: "";
-      position: fixed;
-      right: -80px;
-      bottom: -78px;
-      width: 300px;
-      height: 230px;
-      background: linear-gradient(135deg, transparent 0 25%, #f05d97 25% 52%, #ce2d68 52% 76%, #9c204d 76%);
-      clip-path: polygon(35% 0, 100% 0, 100% 100%, 0 100%);
-      opacity: .95;
-      pointer-events: none;
-    }
-    .top-band {
-      height: 12px;
-      background: var(--navy);
-    }
-    .quiz-panel {
-      border: 1px solid #d4dfed;
-      box-shadow: 0 20px 55px rgba(25, 54, 115, .12);
-    }
-    .question-view { display: none; }
-    .question-view.active { display: block; animation: rise .35s ease both; }
-    .answer-choice {
-      border: 2px solid #d4dfed;
-      background: #fff;
-      color: var(--ink);
-      transition: transform .16s ease, border-color .16s ease, background .16s ease;
-    }
-    .answer-choice:hover:not(:disabled) {
-      transform: translateY(-2px);
-      border-color: #6b8ccc;
-      background: #f7fbff;
-    }
-    .answer-choice:focus-visible, .next-button:focus-visible, .restart-button:focus-visible {
-      outline: 4px solid rgba(232, 82, 139, .38);
-      outline-offset: 3px;
-    }
-    .answer-choice:disabled { cursor: default; }
-    .answer-choice.is-correct {
-      background: #e5f7ef;
-      border-color: var(--success);
-      color: #075b42;
-    }
-    .answer-choice.is-wrong {
-      background: #fff0f1;
-      border-color: var(--danger);
-      color: #8f2130;
-    }
-    .feedback { display: none; }
-    .feedback.show { display: flex; animation: rise .3s ease both; }
-    .progress-fill {
-      transition: width .35s ease;
-      background: linear-gradient(90deg, #3154b2, #e8528b);
-    }
-    .binary-strip {
-      font-family: "Space Mono", monospace;
-      letter-spacing: .13em;
-      background-image: linear-gradient(90deg, rgba(38,61,145,.09) 1px, transparent 1px);
-      background-size: 28px 100%;
-    }
-    @keyframes rise {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @media (max-width: 640px) {
-      .app-shell::after { width: 190px; height: 150px; }
-    }
+    :root{--navy:#263d91;--deep:#17245f;--pink:#e8528b;--ink:#263044;--good:#087f5b;--bad:#bb2d3b}
+    *{box-sizing:border-box} body{margin:0;width:100%;font-family:"Work Sans",sans-serif;color:var(--ink);background:#f7fbff}
+    .app-shell{width:100%;min-height:calc(100 * min(var(--vh, 1vh), 1vh));overflow:hidden;position:relative}
+    .app-shell:after{content:"";position:fixed;right:-70px;bottom:-65px;width:280px;height:210px;background:linear-gradient(135deg,transparent 0 25%,#f05d97 25% 52%,#ce2d68 52% 76%,#9c204d 76%);clip-path:polygon(35% 0,100% 0,100% 100%,0 100%);pointer-events:none}
+    .top-band{height:12px;background:var(--navy)} .quiz-panel{border:1px solid #d4dfed;box-shadow:0 20px 55px rgba(25,54,115,.12)}
+    .question-view{display:none}.question-view.active{display:block;animation:rise .35s ease both}
+    .answer-choice{border:2px solid #d4dfed;background:#fff;color:var(--ink);transition:.16s ease}
+    .answer-choice:hover:not(:disabled){transform:translateY(-2px);border-color:#6b8ccc;background:#f7fbff}
+    .answer-choice:focus-visible,.next-button:focus-visible,.restart-button:focus-visible{outline:4px solid rgba(232,82,139,.4);outline-offset:3px}
+    .answer-choice:disabled{cursor:default}.answer-choice.is-correct{background:#e5f7ef;border-color:var(--good);color:#075b42}.answer-choice.is-wrong{background:#fff0f1;border-color:var(--bad);color:#8f2130}
+    .feedback{display:none}.feedback.show{display:flex;animation:rise .3s ease both}
+    .progress-fill{background:linear-gradient(90deg,#3154b2,#e8528b);transition:width .35s ease}
+    .binary-strip{font-family:"Space Mono",monospace;letter-spacing:.12em;background-image:linear-gradient(90deg,rgba(38,61,145,.09) 1px,transparent 1px);background-size:28px 100%}
+    @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+    @media(max-width:640px){.app-shell:after{width:180px;height:135px}}
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js" type="text/javascript"></script>
   <script src="/_sdk/fbe2ebfd64647c54.data_sdk.js" type="text/javascript" integrity="sha512-vkTX6CfvpHc3WbjK+tFJCaDuw4ERA4aEV/e5/7+MMJPMTF4RJYCI6CAwJBT/gtDW+dba4uLSsPUgDjVDHWtgUQ=="></script>
   <script src="/_sdk/fcb6dc01f91829ac.resizing_sdk.js" type="text/javascript" integrity="sha512-YK8JfnN705qaEaVhiL7pcVB2Rs/BbdX5yxV55Az8zT/1JanyEWTw9HqCF915m9iV1YEaoil8qsjJz03l1Kb0Ug=="></script>
+  <script src="/_sdk/5629ea66dc55d54f.editing_sdk.js" type="text/javascript" integrity="sha512-snPYzGvgiTEMUBOb+HlCBkFeiM0IRX4hcgA78wvalhC0WnJtaX+RCbosPWtNqZsZ7sZ9NwN0oePZYa+IlMwa+w=="></script>
  </head>
  <body data-template-id="__page-root">
   <div class="app-shell">
@@ -110,11 +34,11 @@
    <header data-template-id="quiz-header" class="canva-header bg-[#263d91] text-white px-5 py-6 sm:px-10">
     <div class="w-full max-w-5xl mx-auto flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
      <div>
-      <p data-template-id="quiz-kicker" class="canva-text uppercase tracking-[0.19em] text-sm font-semibold text-[#cbd9ff]"></p>
-      <h1 data-template-id="quiz-title" class="canva-text mt-1 font-bold leading-tight"></h1>
+      <p data-template-id="quiz-kicker" class="canva-text uppercase tracking-[.19em] text-sm font-semibold text-[#cbd9ff]">National 5 Computing Science</p>
+      <h1 data-template-id="quiz-title" class="canva-text mt-1 font-bold leading-tight">Binary Integers Quiz</h1>
      </div>
      <div class="rounded-xl border border-white/25 bg-white/10 px-4 py-3 min-w-[150px]">
-      <p data-template-id="score-label" class="canva-text text-xs uppercase tracking-wider text-[#dbe6ff]"></p>
+      <p data-template-id="score-label" class="canva-text text-xs uppercase tracking-wider text-[#dbe6ff]">Your score</p>
       <p id="live-score" class="font-bold text-2xl" aria-live="polite">0 / 10</p>
      </div>
     </div>
@@ -123,250 +47,125 @@
     <section class="mb-7" aria-label="Quiz progress">
      <div class="flex items-center justify-between gap-4 mb-2">
       <p id="progress-label" class="font-semibold text-[#263d91]" aria-live="polite">Question 1 of 10</p>
-      <p data-template-id="progress-helper" class="canva-text text-sm text-slate-600"></p>
+      <p data-template-id="progress-helper" class="canva-text text-sm text-slate-600">Choose the best answer</p>
      </div>
      <div class="h-3 rounded-full bg-[#dbe9f8] overflow-hidden">
-      <div id="progress-fill" class="progress-fill h-full rounded-full" style="width: 10%;"></div>
+      <div id="progress-fill" class="progress-fill h-full rounded-full" style="width:10%"></div>
      </div>
     </section>
-    <section id="quiz-area" class="quiz-panel rounded-3xl bg-white p-5 sm:p-9">
+    <section class="quiz-panel rounded-3xl bg-white p-5 sm:p-9">
      <div class="binary-strip rounded-2xl px-5 py-3 mb-7 text-center text-[#263d91] font-bold text-sm sm:text-base">
       128 64 32 16 8 4 2 1
      </div>
      <article class="question-view active" data-question="0">
       <p class="text-sm font-bold tracking-widest text-[#e8528b] mb-3">01 / 10</p>
-      <h2 data-template-id="q1-question" class="canva-text font-bold leading-snug"></h2>
-      <div class="mt-7 grid gap-3"><button data-template-id="q1-a" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button> <button data-template-id="q1-b" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="true"></button> <button data-template-id="q1-c" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button>
+      <h2 data-template-id="q1-question" class="canva-text font-bold leading-snug">Which statement best describes an integer?</h2>
+      <div class="mt-7 grid gap-3"><button data-template-id="q1-a" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false">A number that must be positive</button><button data-template-id="q1-b" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="true">A whole number with no decimal portion</button><button data-template-id="q1-c" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false">Any number with a decimal point</button>
       </div>
-      <div data-template-id="q1-correct" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-950">
-       <i data-lucide="circle-check"></i><span></span>
-      </div>
-      <div data-template-id="q1-wrong" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-rose-200 bg-rose-50 p-4 text-rose-950">
-       <i data-lucide="circle-x"></i><span></span>
-      </div><button data-template-id="continue-button" class="canva-button next-button mt-6 hidden rounded-xl px-6 py-3 font-bold" type="button"></button>
+      <p data-template-id="q1-correct" class="canva-banner feedback mt-6 rounded-xl border border-emerald-200 bg-emerald-50 p-4">Correct! Integers are whole numbers with no decimal portion.</p>
+      <p data-template-id="q1-wrong" class="canva-banner feedback mt-6 rounded-xl border border-rose-200 bg-rose-50 p-4">Not quite. Integers are whole numbers with no decimal portion.</p><button data-template-id="continue-button" class="canva-button next-button mt-6 hidden rounded-xl px-6 py-3 font-bold" type="button">Continue</button>
      </article>
      <article class="question-view" data-question="1">
       <p class="text-sm font-bold tracking-widest text-[#e8528b] mb-3">02 / 10</p>
-      <h2 data-template-id="q2-question" class="canva-text font-bold leading-snug"></h2>
-      <div class="mt-7 grid gap-3"><button data-template-id="q2-a" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="true"></button> <button data-template-id="q2-b" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button> <button data-template-id="q2-c" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button>
+      <h2 data-template-id="q2-question" class="canva-text font-bold leading-snug">What base is the binary number system?</h2>
+      <div class="mt-7 grid gap-3"><button data-template-id="q2-a" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="true">Base 2</button><button data-template-id="q2-b" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false">Base 8</button><button data-template-id="q2-c" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false">Base 10</button>
       </div>
-      <div data-template-id="q2-correct" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-950">
-       <i data-lucide="circle-check"></i><span></span>
-      </div>
-      <div data-template-id="q2-wrong" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-rose-200 bg-rose-50 p-4 text-rose-950">
-       <i data-lucide="circle-x"></i><span></span>
-      </div><button data-template-id="continue-button" class="canva-button next-button mt-6 hidden rounded-xl px-6 py-3 font-bold" type="button"></button>
+      <p data-template-id="q2-correct" class="canva-banner feedback mt-6 rounded-xl border border-emerald-200 bg-emerald-50 p-4">Correct! Binary is a base 2 system.</p>
+      <p data-template-id="q2-wrong" class="canva-banner feedback mt-6 rounded-xl border border-rose-200 bg-rose-50 p-4">Not quite. Binary is base 2 because it uses only 0 and 1.</p><button data-template-id="continue-button" class="canva-button next-button mt-6 hidden rounded-xl px-6 py-3 font-bold" type="button">Continue</button>
      </article>
      <article class="question-view" data-question="2">
       <p class="text-sm font-bold tracking-widest text-[#e8528b] mb-3">03 / 10</p>
-      <h2 data-template-id="q3-question" class="canva-text font-bold leading-snug"></h2>
-      <div class="mt-7 grid gap-3"><button data-template-id="q3-a" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button> <button data-template-id="q3-b" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button> <button data-template-id="q3-c" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="true"></button>
+      <h2 data-template-id="q3-question" class="canva-text font-bold leading-snug">Which two digits are used in binary?</h2>
+      <div class="mt-7 grid gap-3"><button data-template-id="q3-a" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false">1 and 2</button><button data-template-id="q3-b" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false">0 through 9</button><button data-template-id="q3-c" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="true">0 and 1</button>
       </div>
-      <div data-template-id="q3-correct" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-950">
-       <i data-lucide="circle-check"></i><span></span>
-      </div>
-      <div data-template-id="q3-wrong" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-rose-200 bg-rose-50 p-4 text-rose-950">
-       <i data-lucide="circle-x"></i><span></span>
-      </div><button data-template-id="continue-button" class="canva-button next-button mt-6 hidden rounded-xl px-6 py-3 font-bold" type="button"></button>
+      <p data-template-id="q3-correct" class="canva-banner feedback mt-6 rounded-xl border border-emerald-200 bg-emerald-50 p-4">Correct! Binary has exactly two values: 0 and 1.</p>
+      <p data-template-id="q3-wrong" class="canva-banner feedback mt-6 rounded-xl border border-rose-200 bg-rose-50 p-4">Not quite. Binary uses the digits 0 and 1.</p><button data-template-id="continue-button" class="canva-button next-button mt-6 hidden rounded-xl px-6 py-3 font-bold" type="button">Continue</button>
      </article>
      <article class="question-view" data-question="3">
       <p class="text-sm font-bold tracking-widest text-[#e8528b] mb-3">04 / 10</p>
-      <h2 data-template-id="q4-question" class="canva-text font-bold leading-snug"></h2>
-      <div class="mt-7 grid gap-3"><button data-template-id="q4-a" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button> <button data-template-id="q4-b" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="true"></button> <button data-template-id="q4-c" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button>
+      <h2 data-template-id="q4-question" class="canva-text font-bold leading-snug">What is a single binary digit called?</h2>
+      <div class="mt-7 grid gap-3"><button data-template-id="q4-a" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false">A byte</button><button data-template-id="q4-b" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="true">A bit</button><button data-template-id="q4-c" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false">A decimal</button>
       </div>
-      <div data-template-id="q4-correct" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-950">
-       <i data-lucide="circle-check"></i><span></span>
-      </div>
-      <div data-template-id="q4-wrong" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-rose-200 bg-rose-50 p-4 text-rose-950">
-       <i data-lucide="circle-x"></i><span></span>
-      </div><button data-template-id="continue-button" class="canva-button next-button mt-6 hidden rounded-xl px-6 py-3 font-bold" type="button"></button>
+      <p data-template-id="q4-correct" class="canva-banner feedback mt-6 rounded-xl border border-emerald-200 bg-emerald-50 p-4">Correct! A bit is short for binary digit.</p>
+      <p data-template-id="q4-wrong" class="canva-banner feedback mt-6 rounded-xl border border-rose-200 bg-rose-50 p-4">Not quite. A single 0 or 1 is called a bit.</p><button data-template-id="continue-button" class="canva-button next-button mt-6 hidden rounded-xl px-6 py-3 font-bold" type="button">Continue</button>
      </article>
      <article class="question-view" data-question="4">
       <p class="text-sm font-bold tracking-widest text-[#e8528b] mb-3">05 / 10</p>
-      <h2 data-template-id="q5-question" class="canva-text font-bold leading-snug"></h2>
-      <div class="mt-7 grid gap-3"><button data-template-id="q5-a" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="true"></button> <button data-template-id="q5-b" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button> <button data-template-id="q5-c" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button>
+      <h2 data-template-id="q5-question" class="canva-text font-bold leading-snug">What is the decimal value of binary 0000 1010?</h2>
+      <div class="mt-7 grid gap-3"><button data-template-id="q5-a" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="true">10</button><button data-template-id="q5-b" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false">8</button><button data-template-id="q5-c" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false">12</button>
       </div>
-      <div data-template-id="q5-correct" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-950">
-       <i data-lucide="circle-check"></i><span></span>
-      </div>
-      <div data-template-id="q5-wrong" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-rose-200 bg-rose-50 p-4 text-rose-950">
-       <i data-lucide="circle-x"></i><span></span>
-      </div><button data-template-id="continue-button" class="canva-button next-button mt-6 hidden rounded-xl px-6 py-3 font-bold" type="button"></button>
+      <p data-template-id="q5-correct" class="canva-banner feedback mt-6 rounded-xl border border-emerald-200 bg-emerald-50 p-4">Correct! 8 + 2 = 10.</p>
+      <p data-template-id="q5-wrong" class="canva-banner feedback mt-6 rounded-xl border border-rose-200 bg-rose-50 p-4">Not quite. The 1s are in the 8 and 2 columns, so 8 + 2 = 10.</p><button data-template-id="continue-button" class="canva-button next-button mt-6 hidden rounded-xl px-6 py-3 font-bold" type="button">Continue</button>
      </article>
      <article class="question-view" data-question="5">
       <p class="text-sm font-bold tracking-widest text-[#e8528b] mb-3">06 / 10</p>
-      <h2 data-template-id="q6-question" class="canva-text font-bold leading-snug"></h2>
-      <div class="mt-7 grid gap-3"><button data-template-id="q6-a" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button> <button data-template-id="q6-b" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button> <button data-template-id="q6-c" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="true"></button>
+      <h2 data-template-id="q6-question" class="canva-text font-bold leading-snug">Which binary number represents decimal 13?</h2>
+      <div class="mt-7 grid gap-3"><button data-template-id="q6-a" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false">1100</button><button data-template-id="q6-b" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false">1011</button><button data-template-id="q6-c" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="true">1101</button>
       </div>
-      <div data-template-id="q6-correct" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-950">
-       <i data-lucide="circle-check"></i><span></span>
-      </div>
-      <div data-template-id="q6-wrong" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-rose-200 bg-rose-50 p-4 text-rose-950">
-       <i data-lucide="circle-x"></i><span></span>
-      </div><button data-template-id="continue-button" class="canva-button next-button mt-6 hidden rounded-xl px-6 py-3 font-bold" type="button"></button>
+      <p data-template-id="q6-correct" class="canva-banner feedback mt-6 rounded-xl border border-emerald-200 bg-emerald-50 p-4">Correct! 8 + 4 + 1 = 13.</p>
+      <p data-template-id="q6-wrong" class="canva-banner feedback mt-6 rounded-xl border border-rose-200 bg-rose-50 p-4">Not quite. 1101 means 8 + 4 + 1, which equals 13.</p><button data-template-id="continue-button" class="canva-button next-button mt-6 hidden rounded-xl px-6 py-3 font-bold" type="button">Continue</button>
      </article>
      <article class="question-view" data-question="6">
       <p class="text-sm font-bold tracking-widest text-[#e8528b] mb-3">07 / 10</p>
-      <h2 data-template-id="q7-question" class="canva-text font-bold leading-snug"></h2>
-      <div class="mt-7 grid gap-3"><button data-template-id="q7-a" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button> <button data-template-id="q7-b" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="true"></button> <button data-template-id="q7-c" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button>
+      <h2 data-template-id="q7-question" class="canva-text font-bold leading-snug">In an 8-bit binary number, what is the place value furthest to the right?</h2>
+      <div class="mt-7 grid gap-3"><button data-template-id="q7-a" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false">128</button><button data-template-id="q7-b" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="true">1</button><button data-template-id="q7-c" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false">256</button>
       </div>
-      <div data-template-id="q7-correct" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-950">
-       <i data-lucide="circle-check"></i><span></span>
-      </div>
-      <div data-template-id="q7-wrong" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-rose-200 bg-rose-50 p-4 text-rose-950">
-       <i data-lucide="circle-x"></i><span></span>
-      </div><button data-template-id="continue-button" class="canva-button next-button mt-6 hidden rounded-xl px-6 py-3 font-bold" type="button"></button>
+      <p data-template-id="q7-correct" class="canva-banner feedback mt-6 rounded-xl border border-emerald-200 bg-emerald-50 p-4">Correct! Binary place values begin at 1 on the right.</p>
+      <p data-template-id="q7-wrong" class="canva-banner feedback mt-6 rounded-xl border border-rose-200 bg-rose-50 p-4">Not quite. Binary place values start at 1 on the far right.</p><button data-template-id="continue-button" class="canva-button next-button mt-6 hidden rounded-xl px-6 py-3 font-bold" type="button">Continue</button>
      </article>
      <article class="question-view" data-question="7">
       <p class="text-sm font-bold tracking-widest text-[#e8528b] mb-3">08 / 10</p>
-      <h2 data-template-id="q8-question" class="canva-text font-bold leading-snug"></h2>
-      <div class="mt-7 grid gap-3"><button data-template-id="q8-a" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="true"></button> <button data-template-id="q8-b" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button> <button data-template-id="q8-c" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button>
+      <h2 data-template-id="q8-question" class="canva-text font-bold leading-snug">What is the decimal value of binary 0110 0110?</h2>
+      <div class="mt-7 grid gap-3"><button data-template-id="q8-a" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="true">102</button><button data-template-id="q8-b" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false">96</button><button data-template-id="q8-c" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false">66</button>
       </div>
-      <div data-template-id="q8-correct" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-950">
-       <i data-lucide="circle-check"></i><span></span>
-      </div>
-      <div data-template-id="q8-wrong" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-rose-200 bg-rose-50 p-4 text-rose-950">
-       <i data-lucide="circle-x"></i><span></span>
-      </div><button data-template-id="continue-button" class="canva-button next-button mt-6 hidden rounded-xl px-6 py-3 font-bold" type="button"></button>
+      <p data-template-id="q8-correct" class="canva-banner feedback mt-6 rounded-xl border border-emerald-200 bg-emerald-50 p-4">Correct! 64 + 32 + 4 + 2 = 102.</p>
+      <p data-template-id="q8-wrong" class="canva-banner feedback mt-6 rounded-xl border border-rose-200 bg-rose-50 p-4">Not quite. Add the place values with a 1: 64 + 32 + 4 + 2.</p><button data-template-id="continue-button" class="canva-button next-button mt-6 hidden rounded-xl px-6 py-3 font-bold" type="button">Continue</button>
      </article>
      <article class="question-view" data-question="8">
       <p class="text-sm font-bold tracking-widest text-[#e8528b] mb-3">09 / 10</p>
-      <h2 data-template-id="q9-question" class="canva-text font-bold leading-snug"></h2>
-      <div class="mt-7 grid gap-3"><button data-template-id="q9-a" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button> <button data-template-id="q9-b" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button> <button data-template-id="q9-c" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="true"></button>
+      <h2 data-template-id="q9-question" class="canva-text font-bold leading-snug">When converting decimal to binary by repeated division by 2, how are the remainders read?</h2>
+      <div class="mt-7 grid gap-3"><button data-template-id="q9-a" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false">From top to bottom</button><button data-template-id="q9-b" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false">From left to right</button><button data-template-id="q9-c" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="true">From bottom to top</button>
       </div>
-      <div data-template-id="q9-correct" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-950">
-       <i data-lucide="circle-check"></i><span></span>
-      </div>
-      <div data-template-id="q9-wrong" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-rose-200 bg-rose-50 p-4 text-rose-950">
-       <i data-lucide="circle-x"></i><span></span>
-      </div><button data-template-id="continue-button" class="canva-button next-button mt-6 hidden rounded-xl px-6 py-3 font-bold" type="button"></button>
+      <p data-template-id="q9-correct" class="canva-banner feedback mt-6 rounded-xl border border-emerald-200 bg-emerald-50 p-4">Correct! Read the remainders from the bottom upwards.</p>
+      <p data-template-id="q9-wrong" class="canva-banner feedback mt-6 rounded-xl border border-rose-200 bg-rose-50 p-4">Not quite. Read the final remainder first, from bottom to top.</p><button data-template-id="continue-button" class="canva-button next-button mt-6 hidden rounded-xl px-6 py-3 font-bold" type="button">Continue</button>
      </article>
      <article class="question-view" data-question="9">
       <p class="text-sm font-bold tracking-widest text-[#e8528b] mb-3">10 / 10</p>
-      <h2 data-template-id="q10-question" class="canva-text font-bold leading-snug"></h2>
-      <div class="mt-7 grid gap-3"><button data-template-id="q10-a" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button> <button data-template-id="q10-b" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="true"></button> <button data-template-id="q10-c" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button>
+      <h2 data-template-id="q10-question" class="canva-text font-bold leading-snug">Which is an advantage of using binary in computers?</h2>
+      <div class="mt-7 grid gap-3"><button data-template-id="q10-a" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false">It requires more arithmetic rules</button><button data-template-id="q10-b" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="true">0 and 1 are easier to represent digitally</button><button data-template-id="q10-c" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false">It uses all ten decimal digits</button>
       </div>
-      <div data-template-id="q10-correct" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-950">
-       <i data-lucide="circle-check"></i><span></span>
-      </div>
-      <div data-template-id="q10-wrong" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-rose-200 bg-rose-50 p-4 text-rose-950">
-       <i data-lucide="circle-x"></i><span></span>
-      </div><button data-template-id="finish-button" class="canva-button next-button mt-6 hidden rounded-xl px-6 py-3 font-bold" type="button"></button>
+      <p data-template-id="q10-correct" class="canva-banner feedback mt-6 rounded-xl border border-emerald-200 bg-emerald-50 p-4">Correct! Two distinct states are easy to represent digitally.</p>
+      <p data-template-id="q10-wrong" class="canva-banner feedback mt-6 rounded-xl border border-rose-200 bg-rose-50 p-4">Not quite. Binary uses two states that are easy to represent using digital signals.</p><button data-template-id="finish-button" class="canva-button next-button mt-6 hidden rounded-xl px-6 py-3 font-bold" type="button">See my result</button>
      </article>
      <section id="results-view" class="hidden text-center py-5" aria-live="polite">
-      <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[#dbe9f8] text-[#263d91]"><i data-lucide="trophy" style="width:38px;height:38px;"></i>
+      <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[#dbe9f8] text-4xl">
+       🏆
       </div>
-      <h2 data-template-id="results-title" class="canva-text mt-6 font-bold"></h2>
+      <h2 data-template-id="results-title" class="canva-text mt-6 font-bold">Quiz complete!</h2>
       <p id="final-score" class="mt-3 font-bold text-5xl text-[#263d91]">0 / 10</p>
-      <p id="result-message" class="mt-4 text-lg text-slate-700"></p><button data-template-id="restart-button" class="canva-button restart-button mt-8 rounded-xl px-6 py-3 font-bold" type="button"></button>
+      <p id="result-message" class="mt-4 text-lg text-slate-700"></p><button data-template-id="restart-button" class="canva-button restart-button mt-8 rounded-xl px-6 py-3 font-bold" type="button">Try again</button>
      </section>
     </section>
    </main>
    <footer class="w-full px-5 pb-8 text-center text-sm text-slate-500 relative z-10">
-    <p data-template-id="footer-note" class="canva-text"></p>
+    <p data-template-id="footer-note" class="canva-text">Binary integers • Learn, practise, repeat</p>
    </footer>
   </div>
-  <script src="/_sdk/5629ea66dc55d54f.editing_sdk.js" integrity="sha512-snPYzGvgiTEMUBOb+HlCBkFeiM0IRX4hcgA78wvalhC0WnJtaX+RCbosPWtNqZsZ7sZ9NwN0oePZYa+IlMwa+w=="></script>
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      lucide.createIcons();
-
-      const questions = Array.from(document.querySelectorAll(".question-view"));
-      const resultsView = document.getElementById("results-view");
-      const progressLabel = document.getElementById("progress-label");
-      const progressFill = document.getElementById("progress-fill");
-      const liveScore = document.getElementById("live-score");
-      const finalScore = document.getElementById("final-score");
-      const resultMessage = document.getElementById("result-message");
-      let currentQuestion = 0;
-      let score = 0;
-
-      function updateScore() {
-        liveScore.textContent = score + " / 10";
-      }
-
-      function showQuestion(index) {
-        questions.forEach((question, questionIndex) => {
-          question.classList.toggle("active", questionIndex === index);
-        });
-        progressLabel.textContent = "Question " + (index + 1) + " of 10";
-        progressFill.style.width = ((index + 1) * 10) + "%";
-      }
-
-      function showResults() {
-        questions.forEach(question => question.classList.remove("active"));
-        resultsView.classList.remove("hidden");
-        progressLabel.textContent = "Quiz complete";
-        progressFill.style.width = "100%";
-        finalScore.textContent = score + " / 10";
-
-        if (score === 10) {
-          resultMessage.textContent = "Outstanding — you have mastered these binary integer foundations.";
-        } else if (score >= 7) {
-          resultMessage.textContent = "Strong work! Review any explanations you missed and you will be ready.";
-        } else if (score >= 4) {
-          resultMessage.textContent = "Good effort. Revisit binary place values and conversions, then try again.";
-        } else {
-          resultMessage.textContent = "Keep practising. Use the feedback to review the key binary concepts.";
-        }
-      }
-
-      document.querySelectorAll(".answer-choice").forEach(button => {
-        button.addEventListener("click", () => {
-          const question = button.closest(".question-view");
-          if (question.dataset.answered === "true") return;
-
-          question.dataset.answered = "true";
-          const correct = button.dataset.correct === "true";
-          const answers = question.querySelectorAll(".answer-choice");
-          answers.forEach(answer => {
-            answer.disabled = true;
-            if (answer.dataset.correct === "true") answer.classList.add("is-correct");
-          });
-
-          if (correct) {
-            score += 1;
-            button.classList.add("is-correct");
-            question.querySelector('[data-template-id$="-correct"]').classList.add("show");
-          } else {
-            button.classList.add("is-wrong");
-            question.querySelector('[data-template-id$="-wrong"]').classList.add("show");
-          }
-
-          updateScore();
-          question.querySelector(".next-button").classList.remove("hidden");
-        });
-      });
-
-      document.querySelectorAll(".next-button").forEach(button => {
-        button.addEventListener("click", () => {
-          if (currentQuestion === questions.length - 1) {
-            showResults();
-            return;
-          }
-          currentQuestion += 1;
-          showQuestion(currentQuestion);
-        });
-      });
-
-      document.querySelector('[data-template-id="restart-button"]').addEventListener("click", () => {
-        score = 0;
-        currentQuestion = 0;
-        updateScore();
-        resultsView.classList.add("hidden");
-
-        questions.forEach(question => {
-          delete question.dataset.answered;
-          question.querySelectorAll(".answer-choice").forEach(answer => {
-            answer.disabled = false;
-            answer.classList.remove("is-correct", "is-wrong");
-          });
-          question.querySelectorAll(".feedback").forEach(feedback => feedback.classList.remove("show"));
-          question.querySelector(".next-button").classList.add("hidden");
-        });
-
-        showQuestion(currentQuestion);
-      });
+    document.addEventListener("DOMContentLoaded",function(){
+      const questions=[...document.querySelectorAll(".question-view")], results=document.getElementById("results-view"), progress=document.getElementById("progress-label"), fill=document.getElementById("progress-fill"), live=document.getElementById("live-score"), final=document.getElementById("final-score"), message=document.getElementById("result-message");
+      let current=0,score=0;
+      const updateScore=()=>live.textContent=score+" / 10";
+      function showQuestion(index){questions.forEach((q,i)=>q.classList.toggle("active",i===index));progress.textContent="Question "+(index+1)+" of 10";fill.style.width=((index+1)*10)+"%"}
+      function showResults(){questions.forEach(q=>q.classList.remove("active"));results.classList.remove("hidden");progress.textContent="Quiz complete";fill.style.width="100%";final.textContent=score+" / 10";message.textContent=score===10?"Outstanding — you have mastered these binary integer foundations.":score>=7?"Strong work! Review any explanations you missed and you will be ready.":score>=4?"Good effort. Revisit binary place values and conversions, then try again.":"Keep practising. Use the feedback to review the key binary concepts."}
+      document.querySelectorAll(".answer-choice").forEach(button=>button.addEventListener("click",function(){
+        const question=button.closest(".question-view");if(question.dataset.answered)return;question.dataset.answered="true";
+        const correct=button.dataset.correct==="true";question.querySelectorAll(".answer-choice").forEach(answer=>{answer.disabled=true;if(answer.dataset.correct==="true")answer.classList.add("is-correct")});
+        if(correct){score++;button.classList.add("is-correct");question.querySelector('[data-template-id$="-correct"]').classList.add("show")}else{button.classList.add("is-wrong");question.querySelector('[data-template-id$="-wrong"]').classList.add("show")}
+        updateScore();question.querySelector(".next-button").classList.remove("hidden");
+      }));
+      document.querySelectorAll(".next-button").forEach(button=>button.addEventListener("click",function(){if(current===questions.length-1)showResults();else{current++;showQuestion(current)}}));
+      document.querySelector('[data-template-id="restart-button"]').addEventListener("click",function(){score=0;current=0;updateScore();results.classList.add("hidden");questions.forEach(q=>{delete q.dataset.answered;q.querySelectorAll(".answer-choice").forEach(a=>{a.disabled=false;a.classList.remove("is-correct","is-wrong")});q.querySelectorAll(".feedback").forEach(f=>f.classList.remove("show"));q.querySelector(".next-button").classList.add("hidden")});showQuestion(0)});
     });
   </script>
  </body>
