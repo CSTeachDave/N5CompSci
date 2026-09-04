@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+ <head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260904-05-c4a2e96","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Canva Sans":"YAFLd8sKbwc,2","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAHO2VMiyZo,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAEul-FRQw4,0","Georgia":"YAGzXkO0pEM,0","Helvetica Neue":"YAFcf6CtJfI,0","Impact":"YAFcfnjI7Vk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YAFdJksXcAk,0","Libre Baskerville":"YACgEUFdPdA,0","Manrope":"YAHO2b2feC4,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YADLjI9qxTA,0","Nunito":"YACgEX8C5Gg,0","Oleo Script":"YACgEQQ14jI,0","Phantom Sans":"YAHO2E8Pb88,0","Playfair Display":"YACgEYmuCJE,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Quicksand":"YADWjpfPmdk,0","Raleway":"YACgEVg3xZg,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Spectral":"YAHO2rVUHIM,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Ubuntu":"YACgERDU--Q,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0","ui-monospace":"YADlN8CFZ8Q,0","ui-sans-serif":"YACkoN-xg4g,0"}}');</script><script src="/_sdk/9e99ecf74af2a081.telemetry_sdk.js" integrity="sha512-tZ7fmfTx2KpCLjXQnEuL9azQ4A5+7+xumsx6r/WYVD0zCP/8LP8hDeCypMQesmP+WyAew4g7l5Ah23Bjd6yoVg=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Processor Structure Quiz</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #283d91;
+      --deep: #17245e;
+      --pink: #e94f8d;
+      --paper: #f5f7fc;
+      --ink: #202637;
+      --muted: #52617e;
+      --success: #137a59;
+      --danger: #bf3651;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Work Sans", sans-serif;
+      color: var(--ink);
+    }
+
+    .app-shell {
+      width: 100%;
+      min-height: calc(100 * min(var(--vh, 1vh), 1vh));
+      background: var(--paper);
+    }
+
+    .top-bar {
+      position: relative;
+      overflow: hidden;
+      background: var(--navy);
+    }
+
+    .top-bar::after {
+      content: "";
+      position: absolute;
+      top: -115px;
+      right: -55px;
+      width: 310px;
+      height: 310px;
+      background: linear-gradient(
+        135deg,
+        transparent 45%,
+        rgba(158, 181, 237, 0.78) 45%,
+        rgba(158, 181, 237, 0.78) 62%,
+        transparent 62%
+      );
+      transform: rotate(8deg);
+    }
+
+    .circuit {
+      position: absolute;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .quiz-panel {
+      animation: rise 0.35s ease both;
+    }
+
+    .choice {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      padding: 1rem;
+      text-align: left;
+      border: 2px solid #dce2f0;
+      border-radius: 1rem;
+      background: #ffffff;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .choice:hover:not(:disabled) {
+      transform: translateY(-2px);
+      border-color: #8094d0;
+      background: #f7f9ff;
+    }
+
+    .choice:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--pink);
+      outline-offset: 3px;
+    }
+
+    .choice:disabled {
+      cursor: default;
+    }
+
+    .choice.correct {
+      border-color: var(--success);
+      background: #eaf8f2;
+    }
+
+    .choice.wrong {
+      border-color: var(--danger);
+      background: #fff0f3;
+    }
+
+    .letter {
+      display: grid;
+      flex: 0 0 auto;
+      width: 2rem;
+      height: 2rem;
+      place-items: center;
+      border-radius: 999px;
+      background: #e9edf8;
+      color: var(--navy);
+      font-weight: 800;
+    }
+
+    .feedback {
+      display: none;
+    }
+
+    .feedback.visible {
+      display: flex;
+      animation: rise 0.25s ease both;
+    }
+
+    .progress-fill {
+      transition: width 0.35s ease;
+    }
+
+    .rail-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .rail-card::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: -12%;
+      width: 50%;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.55);
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+  <script src="/_sdk/fbe2ebfd64647c54.data_sdk.js" type="text/javascript" integrity="sha512-vkTX6CfvpHc3WbjK+tFJCaDuw4ERA4aEV/e5/7+MMJPMTF4RJYCI6CAwJBT/gtDW+dba4uLSsPUgDjVDHWtgUQ=="></script>
+  <script src="/_sdk/fcb6dc01f91829ac.resizing_sdk.js" type="text/javascript" integrity="sha512-YK8JfnN705qaEaVhiL7pcVB2Rs/BbdX5yxV55Az8zT/1JanyEWTw9HqCF915m9iV1YEaoil8qsjJz03l1Kb0Ug=="></script>
+ </head>
+ <body data-template-id="__page-root" class="app-shell">
+  <header class="top-bar px-5 py-7 sm:px-10">
+   <div class="circuit top-10 left-0 w-44 border-t-2"></div>
+   <div class="circuit top-20 left-12 w-28 border-t-2"></div>
+   <div class="relative z-10 mx-auto flex max-w-5xl flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+    <div>
+     <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[#dfe7ff]">National 5 Computing Science</p>
+     <h1 class="mt-2 text-3xl font-extrabold leading-tight text-white sm:text-4xl">Processor Structure Quiz</h1>
+     <p class="mt-2 max-w-xl text-[#e4eaff]">Ten quick questions on processors, memory, buses and the fetch-execute cycle.</p>
+    </div>
+    <div class="w-full sm:w-60">
+     <div class="mb-2 flex justify-between"><span class="text-sm font-semibold text-white">Quiz progress</span> <span id="progress-count" class="text-sm font-bold text-white" aria-live="polite">1 / 10</span>
+     </div>
+     <div class="h-2 overflow-hidden rounded-full bg-white/25">
+      <div id="progress-fill" class="progress-fill h-full rounded-full bg-[#e94f8d]" style="width: 10%"></div>
+     </div>
+    </div>
+   </div>
+  </header>
+  <main class="w-full px-5 py-8 sm:px-10 sm:py-12">
+   <div class="mx-auto grid max-w-5xl gap-8 lg:grid-cols-[1fr_190px]">
+    <section aria-label="Processor structure quiz">
+     <article id="quiz-card" class="quiz-panel rounded-3xl bg-white p-6 shadow-xl shadow-[#1b2a611f] sm:p-9">
+      <p id="question-label" class="text-sm font-bold uppercase tracking-[0.16em] text-[#e94f8d]"></p>
+      <h2 id="question-title" class="mt-3 text-2xl font-bold text-[#202637]"></h2>
+      <div id="answers" class="mt-7 grid gap-3" role="group" aria-label="Answer options"></div>
+      <div id="feedback" class="feedback mt-6 gap-3 rounded-2xl p-4" aria-live="polite"></div>
+      <div class="mt-6 flex justify-end"><button id="next-button" class="hidden rounded-xl bg-[#283d91] px-5 py-3 font-bold text-white transition hover:bg-[#17245e]" type="button"> Next question </button> <button id="finish-button" class="hidden rounded-xl bg-[#e94f8d] px-5 py-3 font-bold text-white transition hover:bg-[#c93874]" type="button"> See my score </button>
+      </div>
+     </article>
+     <section id="results" class="hidden rounded-3xl bg-white p-8 text-center shadow-xl shadow-[#1b2a611f] sm:p-12" aria-live="polite">
+      <div class="mx-auto grid h-16 w-16 place-items-center rounded-full bg-[#eaf8f2]"><i data-lucide="trophy" class="text-[#137a59]" width="32" height="32"></i>
+      </div>
+      <h2 class="mt-5 text-2xl font-extrabold text-[#202637]">Quiz complete!</h2>
+      <p id="score-display" class="mt-3 text-5xl font-extrabold text-[#283d91]">0 / 10</p>
+      <p class="mx-auto mt-4 max-w-md text-[#52617e]">Great work revising processor structure. Try again to improve your score and strengthen recall.</p><button id="restart-button" class="mt-8 rounded-xl bg-[#283d91] px-6 py-3 font-bold text-white transition hover:bg-[#17245e]" type="button"> Restart quiz </button>
+     </section>
+    </section>
+    <aside class="hidden content-start gap-4 pt-4 lg:grid" aria-label="Revision reminders">
+     <div class="rail-card rounded-2xl bg-[#e27345] p-4 text-white">
+      <p class="font-bold">Control Unit</p>
+     </div>
+     <div class="rail-card rounded-2xl bg-[#3d9fa6] p-4 text-white">
+      <p class="font-bold">ALU</p>
+     </div>
+     <div class="rail-card rounded-2xl bg-[#9d4bb0] p-4 text-white">
+      <p class="font-bold">Registers</p>
+     </div>
+     <div class="rounded-2xl border-2 border-dashed border-[#a9b8dc] p-4 text-[#52617e]"><i data-lucide="cpu" width="27" height="27"></i>
+      <p class="mt-2 text-sm font-medium">Remember CAR(s): Control Unit, ALU, Registers.</p>
+     </div>
+    </aside>
+   </div>
+  </main>
+  <footer class="w-full bg-[#17245e] px-5 py-4 text-center">
+   <p class="text-sm text-[#dfe7ff]">Processor Structure · National 5 Computing Science revision</p>
+  </footer><!-- This is optional when opened outside Canva; all quiz content works without it. -->
+  <script src="/_sdk/5629ea66dc55d54f.editing_sdk.js" integrity="sha512-snPYzGvgiTEMUBOb+HlCBkFeiM0IRX4hcgA78wvalhC0WnJtaX+RCbosPWtNqZsZ7sZ9NwN0oePZYa+IlMwa+w=="></script>
+  <script>
+    const questions = [
+      {
+        label: "Question 1 · Computer systems",
+        title: "Which component is often described as the brain of the computer?",
+        answers: ["Backing storage", "The processor", "An output device"],
+        correct: 1,
+        explanation: "The processor is the computer component that performs instructions."
+      },
+      {
+        label: "Question 2 · Control Unit",
+        title: "Which CPU component controls the timing and order of instructions?",
+        answers: ["The address bus", "The ALU", "The Control Unit"],
+        correct: 2,
+        explanation: "The Control Unit manages instruction timing and order."
+      },
+      {
+        label: "Question 3 · ALU",
+        title: "What is the main role of the Arithmetic and Logic Unit?",
+        answers: ["Perform calculations and logical decisions", "Store files permanently", "Display results on a monitor"],
+        correct: 0,
+        explanation: "The ALU performs arithmetic calculations and logical decisions."
+      },
+      {
+        label: "Question 4 · Registers",
+        title: "Which statement best describes registers?",
+        answers: ["Large permanent stores in backing storage", "Small, fast temporary stores on the processor", "Devices used to enter data into a computer"],
+        correct: 1,
+        explanation: "Registers are small, fast temporary stores located on the processor."
+      },
+      {
+        label: "Question 5 · Registers",
+        title: "Which item can be held in a register?",
+        answers: ["A printed document", "A keyboard signal only", "An instruction, data or an address"],
+        correct: 2,
+        explanation: "Registers can store data, instructions and addresses."
+      },
+      {
+        label: "Question 6 · Word length",
+        title: "What does a processor's word length describe?",
+        answers: ["The largest binary number it can manipulate in one operation", "The physical width of the processor chip", "The number of programs stored on the computer"],
+        correct: 0,
+        explanation: "Word length is the largest binary number a processor can handle in one operation."
+      },
+      {
+        label: "Question 7 · Data bus",
+        title: "What does the data bus carry?",
+        answers: ["The location of a memory address", "Data to and from the CPU and memory", "Only status signals"],
+        correct: 1,
+        explanation: "The data bus carries data between the CPU and memory."
+      },
+      {
+        label: "Question 8 · Address bus",
+        title: "What does the address bus carry?",
+        answers: ["A complete binary word of data", "The address of the memory location being accessed", "Instructions for the printer"],
+        correct: 1,
+        explanation: "The address bus carries the address of a memory location."
+      },
+      {
+        label: "Question 9 · Control bus",
+        title: "What is the purpose of the control bus?",
+        answers: ["It carries status and control signals to initiate operations", "It stores permanent copies of files", "It holds the largest binary number the CPU can process"],
+        correct: 0,
+        explanation: "The control bus carries status and control signals."
+      },
+      {
+        label: "Question 10 · Fetch-execute cycle",
+        title: "Which sequence correctly describes the fetch-execute cycle?",
+        answers: ["Execute → Fetch → Decode", "Decode → Store → Print", "Fetch → Decode → Execute"],
+        correct: 2,
+        explanation: "Instructions are fetched, decoded, then executed."
+      }
+    ];
+
+    const letters = ["A", "B", "C"];
+    let currentQuestion = 0;
+    let score = 0;
+    let answered = false;
+
+    const questionLabel = document.getElementById("question-label");
+    const questionTitle = document.getElementById("question-title");
+    const answers = document.getElementById("answers");
+    const feedback = document.getElementById("feedback");
+    const nextButton = document.getElementById("next-button");
+    const finishButton = document.getElementById("finish-button");
+    const progressCount = document.getElementById("progress-count");
+    const progressFill = document.getElementById("progress-fill");
+    const quizCard = document.getElementById("quiz-card");
+    const results = document.getElementById("results");
+    const scoreDisplay = document.getElementById("score-display");
+
+    function updateProgress() {
+      const position = currentQuestion + 1;
+      progressCount.textContent = position + " / " + questions.length;
+      progressFill.style.width = (position / questions.length * 100) + "%";
+    }
+
+    function renderQuestion() {
+      const question = questions[currentQuestion];
+      answered = false;
+
+      questionLabel.textContent = question.label;
+      questionTitle.textContent = question.title;
+      answers.innerHTML = "";
+      feedback.className = "feedback mt-6 gap-3 rounded-2xl p-4";
+      feedback.innerHTML = "";
+      nextButton.classList.add("hidden");
+      finishButton.classList.add("hidden");
+
+      question.answers.forEach((answer, index) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "choice";
+        button.setAttribute("aria-label", letters[index] + ". " + answer);
+
+        const letter = document.createElement("span");
+        letter.className = "letter";
+        letter.textContent = letters[index];
+
+        const text = document.createElement("span");
+        text.className = "font-medium";
+        text.textContent = answer;
+
+        button.append(letter, text);
+        button.addEventListener("click", () => selectAnswer(index));
+        answers.appendChild(button);
+      });
+
+      updateProgress();
+    }
+
+    function selectAnswer(selectedIndex) {
+      if (answered) return;
+
+      answered = true;
+      const question = questions[currentQuestion];
+      const answerButtons = [...answers.querySelectorAll(".choice")];
+      const isCorrect = selectedIndex === question.correct;
+
+      answerButtons.forEach((button, index) => {
+        button.disabled = true;
+        if (index === question.correct) button.classList.add("correct");
+        if (index === selectedIndex && !isCorrect) button.classList.add("wrong");
+      });
+
+      if (isCorrect) score += 1;
+
+      feedback.className =
+        "feedback visible mt-6 gap-3 rounded-2xl p-4 " +
+        (isCorrect ? "bg-[#eaf8f2] text-[#0d5b42]" : "bg-[#fff0f3] text-[#98273e]");
+
+      feedback.innerHTML =
+        '<i data-lucide="' + (isCorrect ? "circle-check" : "circle-x") + '" class="shrink-0" width="22"></i>' +
+        '<p class="font-medium">' +
+        (isCorrect ? "Correct: " : "Not quite: ") +
+        question.explanation +
+        "</p>";
+
+      if (window.lucide) lucide.createIcons();
+
+      if (currentQuestion === questions.length - 1) {
+        finishButton.classList.remove("hidden");
+      } else {
+        nextButton.classList.remove("hidden");
+      }
+    }
+
+    nextButton.addEventListener("click", () => {
+      currentQuestion += 1;
+      renderQuestion();
+    });
+
+    finishButton.addEventListener("click", () => {
+      quizCard.classList.add("hidden");
+      results.classList.remove("hidden");
+      scoreDisplay.textContent = score + " / " + questions.length;
+      progressFill.style.width = "100%";
+    });
+
+    document.getElementById("restart-button").addEventListener("click", () => {
+      currentQuestion = 0;
+      score = 0;
+      results.classList.add("hidden");
+      quizCard.classList.remove("hidden");
+      renderQuestion();
+    });
+
+    renderQuestion();
+    if (window.lucide) lucide.createIcons();
+  </script>
+ </body>
+</html>
