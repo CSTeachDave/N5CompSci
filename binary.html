@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+ <head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260904-05-c4a2e96","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Canva Sans":"YAFLd8sKbwc,2","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAHO2VMiyZo,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAEul-FRQw4,0","Georgia":"YAGzXkO0pEM,0","Helvetica Neue":"YAFcf6CtJfI,0","Impact":"YAFcfnjI7Vk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YAFdJksXcAk,0","Libre Baskerville":"YACgEUFdPdA,0","Manrope":"YAHO2b2feC4,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YADLjI9qxTA,0","Nunito":"YACgEX8C5Gg,0","Oleo Script":"YACgEQQ14jI,0","Phantom Sans":"YAHO2E8Pb88,0","Playfair Display":"YACgEYmuCJE,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Quicksand":"YADWjpfPmdk,0","Raleway":"YACgEVg3xZg,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Spectral":"YAHO2rVUHIM,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Ubuntu":"YACgERDU--Q,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0","ui-monospace":"YADlN8CFZ8Q,0","ui-sans-serif":"YACkoN-xg4g,0"}}');</script><script src="/_sdk/9e99ecf74af2a081.telemetry_sdk.js" integrity="sha512-tZ7fmfTx2KpCLjXQnEuL9azQ4A5+7+xumsx6r/WYVD0zCP/8LP8hDeCypMQesmP+WyAew4g7l5Ah23Bjd6yoVg=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Binary Integers Quiz</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #263d91;
+      --deep-navy: #17245f;
+      --pink: #e8528b;
+      --magenta: #c82d67;
+      --pale-blue: #dbe9f8;
+      --ink: #263044;
+      --success: #087f5b;
+      --danger: #bb2d3b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      width: 100%;
+      min-height: calc(100 * min(var(--vh, 1vh), 1vh));
+      font-family: "Work Sans", sans-serif;
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+    .app-shell {
+      width: 100%;
+      min-height: calc(100 * min(var(--vh, 1vh), 1vh));
+      position: relative;
+      overflow: hidden;
+    }
+    .app-shell::after {
+      content: "";
+      position: fixed;
+      right: -80px;
+      bottom: -78px;
+      width: 300px;
+      height: 230px;
+      background: linear-gradient(135deg, transparent 0 25%, #f05d97 25% 52%, #ce2d68 52% 76%, #9c204d 76%);
+      clip-path: polygon(35% 0, 100% 0, 100% 100%, 0 100%);
+      opacity: .95;
+      pointer-events: none;
+    }
+    .top-band {
+      height: 12px;
+      background: var(--navy);
+    }
+    .quiz-panel {
+      border: 1px solid #d4dfed;
+      box-shadow: 0 20px 55px rgba(25, 54, 115, .12);
+    }
+    .question-view { display: none; }
+    .question-view.active { display: block; animation: rise .35s ease both; }
+    .answer-choice {
+      border: 2px solid #d4dfed;
+      background: #fff;
+      color: var(--ink);
+      transition: transform .16s ease, border-color .16s ease, background .16s ease;
+    }
+    .answer-choice:hover:not(:disabled) {
+      transform: translateY(-2px);
+      border-color: #6b8ccc;
+      background: #f7fbff;
+    }
+    .answer-choice:focus-visible, .next-button:focus-visible, .restart-button:focus-visible {
+      outline: 4px solid rgba(232, 82, 139, .38);
+      outline-offset: 3px;
+    }
+    .answer-choice:disabled { cursor: default; }
+    .answer-choice.is-correct {
+      background: #e5f7ef;
+      border-color: var(--success);
+      color: #075b42;
+    }
+    .answer-choice.is-wrong {
+      background: #fff0f1;
+      border-color: var(--danger);
+      color: #8f2130;
+    }
+    .feedback { display: none; }
+    .feedback.show { display: flex; animation: rise .3s ease both; }
+    .progress-fill {
+      transition: width .35s ease;
+      background: linear-gradient(90deg, #3154b2, #e8528b);
+    }
+    .binary-strip {
+      font-family: "Space Mono", monospace;
+      letter-spacing: .13em;
+      background-image: linear-gradient(90deg, rgba(38,61,145,.09) 1px, transparent 1px);
+      background-size: 28px 100%;
+    }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 640px) {
+      .app-shell::after { width: 190px; height: 150px; }
+    }
+  </style>
+  <script src="/_sdk/fbe2ebfd64647c54.data_sdk.js" type="text/javascript" integrity="sha512-vkTX6CfvpHc3WbjK+tFJCaDuw4ERA4aEV/e5/7+MMJPMTF4RJYCI6CAwJBT/gtDW+dba4uLSsPUgDjVDHWtgUQ=="></script>
+  <script src="/_sdk/fcb6dc01f91829ac.resizing_sdk.js" type="text/javascript" integrity="sha512-YK8JfnN705qaEaVhiL7pcVB2Rs/BbdX5yxV55Az8zT/1JanyEWTw9HqCF915m9iV1YEaoil8qsjJz03l1Kb0Ug=="></script>
+ </head>
+ <body data-template-id="__page-root">
+  <div class="app-shell">
+   <div class="top-band"></div>
+   <header data-template-id="quiz-header" class="canva-header bg-[#263d91] text-white px-5 py-6 sm:px-10">
+    <div class="w-full max-w-5xl mx-auto flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+     <div>
+      <p data-template-id="quiz-kicker" class="canva-text uppercase tracking-[0.19em] text-sm font-semibold text-[#cbd9ff]"></p>
+      <h1 data-template-id="quiz-title" class="canva-text mt-1 font-bold leading-tight"></h1>
+     </div>
+     <div class="rounded-xl border border-white/25 bg-white/10 px-4 py-3 min-w-[150px]">
+      <p data-template-id="score-label" class="canva-text text-xs uppercase tracking-wider text-[#dbe6ff]"></p>
+      <p id="live-score" class="font-bold text-2xl" aria-live="polite">0 / 10</p>
+     </div>
+    </div>
+   </header>
+   <main class="w-full max-w-5xl mx-auto px-5 py-8 sm:px-10 sm:py-12">
+    <section class="mb-7" aria-label="Quiz progress">
+     <div class="flex items-center justify-between gap-4 mb-2">
+      <p id="progress-label" class="font-semibold text-[#263d91]" aria-live="polite">Question 1 of 10</p>
+      <p data-template-id="progress-helper" class="canva-text text-sm text-slate-600"></p>
+     </div>
+     <div class="h-3 rounded-full bg-[#dbe9f8] overflow-hidden">
+      <div id="progress-fill" class="progress-fill h-full rounded-full" style="width: 10%;"></div>
+     </div>
+    </section>
+    <section id="quiz-area" class="quiz-panel rounded-3xl bg-white p-5 sm:p-9">
+     <div class="binary-strip rounded-2xl px-5 py-3 mb-7 text-center text-[#263d91] font-bold text-sm sm:text-base">
+      128 64 32 16 8 4 2 1
+     </div>
+     <article class="question-view active" data-question="0">
+      <p class="text-sm font-bold tracking-widest text-[#e8528b] mb-3">01 / 10</p>
+      <h2 data-template-id="q1-question" class="canva-text font-bold leading-snug"></h2>
+      <div class="mt-7 grid gap-3"><button data-template-id="q1-a" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button> <button data-template-id="q1-b" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="true"></button> <button data-template-id="q1-c" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button>
+      </div>
+      <div data-template-id="q1-correct" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-950">
+       <i data-lucide="circle-check"></i><span></span>
+      </div>
+      <div data-template-id="q1-wrong" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-rose-200 bg-rose-50 p-4 text-rose-950">
+       <i data-lucide="circle-x"></i><span></span>
+      </div><button data-template-id="continue-button" class="canva-button next-button mt-6 hidden rounded-xl px-6 py-3 font-bold" type="button"></button>
+     </article>
+     <article class="question-view" data-question="1">
+      <p class="text-sm font-bold tracking-widest text-[#e8528b] mb-3">02 / 10</p>
+      <h2 data-template-id="q2-question" class="canva-text font-bold leading-snug"></h2>
+      <div class="mt-7 grid gap-3"><button data-template-id="q2-a" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="true"></button> <button data-template-id="q2-b" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button> <button data-template-id="q2-c" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button>
+      </div>
+      <div data-template-id="q2-correct" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-950">
+       <i data-lucide="circle-check"></i><span></span>
+      </div>
+      <div data-template-id="q2-wrong" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-rose-200 bg-rose-50 p-4 text-rose-950">
+       <i data-lucide="circle-x"></i><span></span>
+      </div><button data-template-id="continue-button" class="canva-button next-button mt-6 hidden rounded-xl px-6 py-3 font-bold" type="button"></button>
+     </article>
+     <article class="question-view" data-question="2">
+      <p class="text-sm font-bold tracking-widest text-[#e8528b] mb-3">03 / 10</p>
+      <h2 data-template-id="q3-question" class="canva-text font-bold leading-snug"></h2>
+      <div class="mt-7 grid gap-3"><button data-template-id="q3-a" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button> <button data-template-id="q3-b" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button> <button data-template-id="q3-c" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="true"></button>
+      </div>
+      <div data-template-id="q3-correct" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-950">
+       <i data-lucide="circle-check"></i><span></span>
+      </div>
+      <div data-template-id="q3-wrong" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-rose-200 bg-rose-50 p-4 text-rose-950">
+       <i data-lucide="circle-x"></i><span></span>
+      </div><button data-template-id="continue-button" class="canva-button next-button mt-6 hidden rounded-xl px-6 py-3 font-bold" type="button"></button>
+     </article>
+     <article class="question-view" data-question="3">
+      <p class="text-sm font-bold tracking-widest text-[#e8528b] mb-3">04 / 10</p>
+      <h2 data-template-id="q4-question" class="canva-text font-bold leading-snug"></h2>
+      <div class="mt-7 grid gap-3"><button data-template-id="q4-a" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button> <button data-template-id="q4-b" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="true"></button> <button data-template-id="q4-c" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button>
+      </div>
+      <div data-template-id="q4-correct" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-950">
+       <i data-lucide="circle-check"></i><span></span>
+      </div>
+      <div data-template-id="q4-wrong" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-rose-200 bg-rose-50 p-4 text-rose-950">
+       <i data-lucide="circle-x"></i><span></span>
+      </div><button data-template-id="continue-button" class="canva-button next-button mt-6 hidden rounded-xl px-6 py-3 font-bold" type="button"></button>
+     </article>
+     <article class="question-view" data-question="4">
+      <p class="text-sm font-bold tracking-widest text-[#e8528b] mb-3">05 / 10</p>
+      <h2 data-template-id="q5-question" class="canva-text font-bold leading-snug"></h2>
+      <div class="mt-7 grid gap-3"><button data-template-id="q5-a" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="true"></button> <button data-template-id="q5-b" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button> <button data-template-id="q5-c" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button>
+      </div>
+      <div data-template-id="q5-correct" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-950">
+       <i data-lucide="circle-check"></i><span></span>
+      </div>
+      <div data-template-id="q5-wrong" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-rose-200 bg-rose-50 p-4 text-rose-950">
+       <i data-lucide="circle-x"></i><span></span>
+      </div><button data-template-id="continue-button" class="canva-button next-button mt-6 hidden rounded-xl px-6 py-3 font-bold" type="button"></button>
+     </article>
+     <article class="question-view" data-question="5">
+      <p class="text-sm font-bold tracking-widest text-[#e8528b] mb-3">06 / 10</p>
+      <h2 data-template-id="q6-question" class="canva-text font-bold leading-snug"></h2>
+      <div class="mt-7 grid gap-3"><button data-template-id="q6-a" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button> <button data-template-id="q6-b" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button> <button data-template-id="q6-c" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="true"></button>
+      </div>
+      <div data-template-id="q6-correct" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-950">
+       <i data-lucide="circle-check"></i><span></span>
+      </div>
+      <div data-template-id="q6-wrong" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-rose-200 bg-rose-50 p-4 text-rose-950">
+       <i data-lucide="circle-x"></i><span></span>
+      </div><button data-template-id="continue-button" class="canva-button next-button mt-6 hidden rounded-xl px-6 py-3 font-bold" type="button"></button>
+     </article>
+     <article class="question-view" data-question="6">
+      <p class="text-sm font-bold tracking-widest text-[#e8528b] mb-3">07 / 10</p>
+      <h2 data-template-id="q7-question" class="canva-text font-bold leading-snug"></h2>
+      <div class="mt-7 grid gap-3"><button data-template-id="q7-a" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button> <button data-template-id="q7-b" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="true"></button> <button data-template-id="q7-c" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button>
+      </div>
+      <div data-template-id="q7-correct" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-950">
+       <i data-lucide="circle-check"></i><span></span>
+      </div>
+      <div data-template-id="q7-wrong" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-rose-200 bg-rose-50 p-4 text-rose-950">
+       <i data-lucide="circle-x"></i><span></span>
+      </div><button data-template-id="continue-button" class="canva-button next-button mt-6 hidden rounded-xl px-6 py-3 font-bold" type="button"></button>
+     </article>
+     <article class="question-view" data-question="7">
+      <p class="text-sm font-bold tracking-widest text-[#e8528b] mb-3">08 / 10</p>
+      <h2 data-template-id="q8-question" class="canva-text font-bold leading-snug"></h2>
+      <div class="mt-7 grid gap-3"><button data-template-id="q8-a" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="true"></button> <button data-template-id="q8-b" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button> <button data-template-id="q8-c" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button>
+      </div>
+      <div data-template-id="q8-correct" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-950">
+       <i data-lucide="circle-check"></i><span></span>
+      </div>
+      <div data-template-id="q8-wrong" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-rose-200 bg-rose-50 p-4 text-rose-950">
+       <i data-lucide="circle-x"></i><span></span>
+      </div><button data-template-id="continue-button" class="canva-button next-button mt-6 hidden rounded-xl px-6 py-3 font-bold" type="button"></button>
+     </article>
+     <article class="question-view" data-question="8">
+      <p class="text-sm font-bold tracking-widest text-[#e8528b] mb-3">09 / 10</p>
+      <h2 data-template-id="q9-question" class="canva-text font-bold leading-snug"></h2>
+      <div class="mt-7 grid gap-3"><button data-template-id="q9-a" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button> <button data-template-id="q9-b" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button> <button data-template-id="q9-c" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="true"></button>
+      </div>
+      <div data-template-id="q9-correct" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-950">
+       <i data-lucide="circle-check"></i><span></span>
+      </div>
+      <div data-template-id="q9-wrong" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-rose-200 bg-rose-50 p-4 text-rose-950">
+       <i data-lucide="circle-x"></i><span></span>
+      </div><button data-template-id="continue-button" class="canva-button next-button mt-6 hidden rounded-xl px-6 py-3 font-bold" type="button"></button>
+     </article>
+     <article class="question-view" data-question="9">
+      <p class="text-sm font-bold tracking-widest text-[#e8528b] mb-3">10 / 10</p>
+      <h2 data-template-id="q10-question" class="canva-text font-bold leading-snug"></h2>
+      <div class="mt-7 grid gap-3"><button data-template-id="q10-a" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button> <button data-template-id="q10-b" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="true"></button> <button data-template-id="q10-c" class="canva-button answer-choice w-full rounded-xl p-4 text-left font-semibold" type="button" data-correct="false"></button>
+      </div>
+      <div data-template-id="q10-correct" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-950">
+       <i data-lucide="circle-check"></i><span></span>
+      </div>
+      <div data-template-id="q10-wrong" class="canva-banner feedback mt-6 gap-3 rounded-xl border border-rose-200 bg-rose-50 p-4 text-rose-950">
+       <i data-lucide="circle-x"></i><span></span>
+      </div><button data-template-id="finish-button" class="canva-button next-button mt-6 hidden rounded-xl px-6 py-3 font-bold" type="button"></button>
+     </article>
+     <section id="results-view" class="hidden text-center py-5" aria-live="polite">
+      <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[#dbe9f8] text-[#263d91]"><i data-lucide="trophy" style="width:38px;height:38px;"></i>
+      </div>
+      <h2 data-template-id="results-title" class="canva-text mt-6 font-bold"></h2>
+      <p id="final-score" class="mt-3 font-bold text-5xl text-[#263d91]">0 / 10</p>
+      <p id="result-message" class="mt-4 text-lg text-slate-700"></p><button data-template-id="restart-button" class="canva-button restart-button mt-8 rounded-xl px-6 py-3 font-bold" type="button"></button>
+     </section>
+    </section>
+   </main>
+   <footer class="w-full px-5 pb-8 text-center text-sm text-slate-500 relative z-10">
+    <p data-template-id="footer-note" class="canva-text"></p>
+   </footer>
+  </div>
+  <script src="/_sdk/5629ea66dc55d54f.editing_sdk.js" integrity="sha512-snPYzGvgiTEMUBOb+HlCBkFeiM0IRX4hcgA78wvalhC0WnJtaX+RCbosPWtNqZsZ7sZ9NwN0oePZYa+IlMwa+w=="></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
+
+      const questions = Array.from(document.querySelectorAll(".question-view"));
+      const resultsView = document.getElementById("results-view");
+      const progressLabel = document.getElementById("progress-label");
+      const progressFill = document.getElementById("progress-fill");
+      const liveScore = document.getElementById("live-score");
+      const finalScore = document.getElementById("final-score");
+      const resultMessage = document.getElementById("result-message");
+      let currentQuestion = 0;
+      let score = 0;
+
+      function updateScore() {
+        liveScore.textContent = score + " / 10";
+      }
+
+      function showQuestion(index) {
+        questions.forEach((question, questionIndex) => {
+          question.classList.toggle("active", questionIndex === index);
+        });
+        progressLabel.textContent = "Question " + (index + 1) + " of 10";
+        progressFill.style.width = ((index + 1) * 10) + "%";
+      }
+
+      function showResults() {
+        questions.forEach(question => question.classList.remove("active"));
+        resultsView.classList.remove("hidden");
+        progressLabel.textContent = "Quiz complete";
+        progressFill.style.width = "100%";
+        finalScore.textContent = score + " / 10";
+
+        if (score === 10) {
+          resultMessage.textContent = "Outstanding — you have mastered these binary integer foundations.";
+        } else if (score >= 7) {
+          resultMessage.textContent = "Strong work! Review any explanations you missed and you will be ready.";
+        } else if (score >= 4) {
+          resultMessage.textContent = "Good effort. Revisit binary place values and conversions, then try again.";
+        } else {
+          resultMessage.textContent = "Keep practising. Use the feedback to review the key binary concepts.";
+        }
+      }
+
+      document.querySelectorAll(".answer-choice").forEach(button => {
+        button.addEventListener("click", () => {
+          const question = button.closest(".question-view");
+          if (question.dataset.answered === "true") return;
+
+          question.dataset.answered = "true";
+          const correct = button.dataset.correct === "true";
+          const answers = question.querySelectorAll(".answer-choice");
+          answers.forEach(answer => {
+            answer.disabled = true;
+            if (answer.dataset.correct === "true") answer.classList.add("is-correct");
+          });
+
+          if (correct) {
+            score += 1;
+            button.classList.add("is-correct");
+            question.querySelector('[data-template-id$="-correct"]').classList.add("show");
+          } else {
+            button.classList.add("is-wrong");
+            question.querySelector('[data-template-id$="-wrong"]').classList.add("show");
+          }
+
+          updateScore();
+          question.querySelector(".next-button").classList.remove("hidden");
+        });
+      });
+
+      document.querySelectorAll(".next-button").forEach(button => {
+        button.addEventListener("click", () => {
+          if (currentQuestion === questions.length - 1) {
+            showResults();
+            return;
+          }
+          currentQuestion += 1;
+          showQuestion(currentQuestion);
+        });
+      });
+
+      document.querySelector('[data-template-id="restart-button"]').addEventListener("click", () => {
+        score = 0;
+        currentQuestion = 0;
+        updateScore();
+        resultsView.classList.add("hidden");
+
+        questions.forEach(question => {
+          delete question.dataset.answered;
+          question.querySelectorAll(".answer-choice").forEach(answer => {
+            answer.disabled = false;
+            answer.classList.remove("is-correct", "is-wrong");
+          });
+          question.querySelectorAll(".feedback").forEach(feedback => feedback.classList.remove("show"));
+          question.querySelector(".next-button").classList.add("hidden");
+        });
+
+        showQuestion(currentQuestion);
+      });
+    });
+  </script>
+ </body>
+</html>

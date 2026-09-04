@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+ <head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260904-05-c4a2e96","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Canva Sans":"YAFLd8sKbwc,2","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAHO2VMiyZo,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAEul-FRQw4,0","Georgia":"YAGzXkO0pEM,0","Helvetica Neue":"YAFcf6CtJfI,0","Impact":"YAFcfnjI7Vk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YAFdJksXcAk,0","Libre Baskerville":"YACgEUFdPdA,0","Manrope":"YAHO2b2feC4,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YADLjI9qxTA,0","Nunito":"YACgEX8C5Gg,0","Oleo Script":"YACgEQQ14jI,0","Phantom Sans":"YAHO2E8Pb88,0","Playfair Display":"YACgEYmuCJE,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Quicksand":"YADWjpfPmdk,0","Raleway":"YACgEVg3xZg,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Spectral":"YAHO2rVUHIM,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Ubuntu":"YACgERDU--Q,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0","ui-monospace":"YADlN8CFZ8Q,0","ui-sans-serif":"YACkoN-xg4g,0"}}');</script><script src="/_sdk/9e99ecf74af2a081.telemetry_sdk.js" integrity="sha512-tZ7fmfTx2KpCLjXQnEuL9azQ4A5+7+xumsx6r/WYVD0zCP/8LP8hDeCypMQesmP+WyAew4g7l5Ah23Bjd6yoVg=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Translator Programs Quiz</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root { --navy:#283b8f; --blue:#17619c; --pink:#e84e87; --ink:#1d2433; }
+    * { box-sizing: border-box; }
+    body { font-family:"DM Sans",sans-serif; color:var(--ink); }
+    .quiz-shell { min-height:calc(100 * min(var(--vh, 1vh), 1vh)); background:linear-gradient(135deg,#f6f8ff 0%,#fff 52%,#fff2f7 100%); }
+    .header-ribbon { background:#283b8f; position:relative; overflow:hidden; }
+    .header-ribbon:after { content:""; position:absolute; right:-60px; top:-100px; width:310px; height:310px; background:linear-gradient(135deg,transparent 45%,#718acb 45% 64%,#3b4da5 64%); opacity:.8; transform:rotate(20deg); }
+    .quiz-panel { box-shadow:0 20px 50px rgba(40,59,143,.14); }
+    .option-button { border:2px solid #dce3f4; transition:transform .18s ease, border-color .18s ease, background .18s ease; }
+    .option-button:hover:not(:disabled) { border-color:#283b8f; transform:translateY(-2px); background:#f2f5ff; }
+    .option-button:focus-visible,.next-button:focus-visible { outline:3px solid #e84e87; outline-offset:3px; }
+    .option-button:disabled { cursor:default; }
+    .option-button.is-correct { border-color:#16803d; background:#eaf8ef; color:#125f30; }
+    .option-button.is-wrong { border-color:#c73548; background:#fff0f1; color:#9f2333; }
+    .feedback { animation:rise .25s ease-out; }
+    @keyframes rise { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+    .question-panel { display:none; }
+    .question-panel.active { display:block; animation:rise .32s ease-out; }
+    .binary { font-family:"Space Mono",monospace; letter-spacing:.1em; }
+  </style>
+  <script src="/_sdk/fbe2ebfd64647c54.data_sdk.js" type="text/javascript" integrity="sha512-vkTX6CfvpHc3WbjK+tFJCaDuw4ERA4aEV/e5/7+MMJPMTF4RJYCI6CAwJBT/gtDW+dba4uLSsPUgDjVDHWtgUQ=="></script>
+  <script src="/_sdk/fcb6dc01f91829ac.resizing_sdk.js" type="text/javascript" integrity="sha512-YK8JfnN705qaEaVhiL7pcVB2Rs/BbdX5yxV55Az8zT/1JanyEWTw9HqCF915m9iV1YEaoil8qsjJz03l1Kb0Ug=="></script>
+ </head>
+ <body data-template-id="__page-root" class="w-full">
+  <div class="quiz-shell w-full">
+   <header data-template-id="quiz-header" class="canva-header header-ribbon px-5 py-7 text-white sm:px-10">
+    <div class="relative z-10 mx-auto flex max-w-4xl items-center justify-between gap-5">
+     <div>
+      <p data-template-id="header-kicker" class="canva-text mb-1 text-sm font-semibold uppercase tracking-[0.16em]"></p>
+      <h1 data-template-id="quiz-title" class="canva-text text-3xl font-bold sm:text-4xl"></h1>
+     </div>
+     <div class="rounded-2xl border border-white/30 bg-white/10 px-4 py-3 text-right backdrop-blur-sm">
+      <p data-template-id="score-label" class="canva-text text-xs font-semibold uppercase tracking-wider text-blue-100"></p>
+      <p id="score-display" class="binary text-xl font-bold" aria-live="polite">0 / 10</p>
+     </div>
+    </div>
+   </header>
+   <main class="w-full px-5 py-7 sm:px-10 sm:py-10">
+    <div class="mx-auto max-w-4xl">
+     <section aria-label="Quiz progress" class="mb-6">
+      <div class="mb-2 flex items-center justify-between gap-4">
+       <p id="progress-text" class="text-sm font-bold text-[#283b8f]" aria-live="polite">Question 1 of 10</p>
+       <p data-template-id="progress-caption" class="canva-text text-sm text-slate-600"></p>
+      </div>
+      <div class="h-3 overflow-hidden rounded-full bg-[#dce3f4]" aria-hidden="true">
+       <div id="progress-bar" class="h-full rounded-full bg-[#e84e87] transition-all duration-300" style="width:10%"></div>
+      </div>
+     </section>
+     <section id="quiz-area" aria-label="Translator programs questions">
+      <article class="question-panel active quiz-panel rounded-3xl bg-white p-6 sm:p-10" data-question="0" aria-labelledby="q1-title">
+       <p data-template-id="q1-tag" class="canva-tag mb-4 inline-block rounded-full bg-[#e7ecff] px-3 py-1 text-sm font-bold text-[#283b8f]"></p>
+       <h2 id="q1-title" data-template-id="q1-question" class="canva-text mb-7 text-2xl font-bold leading-tight"></h2>
+       <div class="grid gap-3">
+        <button data-template-id="q1-a0" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="0"></button> <button data-template-id="q1-a1" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="1"></button> <button data-template-id="q1-a2" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="2"></button> <button data-template-id="q1-a3" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="3"></button>
+       </div>
+       <div class="feedback mt-6 hidden rounded-2xl border border-[#82c59b] bg-[#eaf8ef] p-5" data-feedback="correct">
+        <h3 data-template-id="correct-heading" class="canva-text font-bold text-[#125f30]"></h3>
+        <p data-template-id="q1-correct" class="canva-text mt-1 text-[#1d6b38]"></p>
+       </div>
+       <div class="feedback mt-6 hidden rounded-2xl border border-[#efb2ba] bg-[#fff0f1] p-5" data-feedback="wrong">
+        <h3 data-template-id="wrong-heading" class="canva-text font-bold text-[#9f2333]"></h3>
+        <p data-template-id="q1-wrong" class="canva-text mt-1 text-[#792030]"></p>
+       </div><button data-template-id="q1-next-button" class="canva-button next-button mt-6 hidden rounded-xl bg-[#283b8f] px-6 py-3 font-bold text-white hover:bg-[#1d2e75]" type="button" data-next></button>
+      </article>
+      <article class="question-panel quiz-panel rounded-3xl bg-white p-6 sm:p-10" data-question="1" aria-labelledby="q2-title">
+       <p data-template-id="q2-tag" class="canva-tag mb-4 inline-block rounded-full bg-[#e7ecff] px-3 py-1 text-sm font-bold text-[#283b8f]"></p>
+       <h2 id="q2-title" data-template-id="q2-question" class="canva-text mb-7 text-2xl font-bold leading-tight"></h2>
+       <div class="grid gap-3">
+        <button data-template-id="q2-a0" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="0"></button><button data-template-id="q2-a1" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="1"></button><button data-template-id="q2-a2" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="2"></button><button data-template-id="q2-a3" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="3"></button>
+       </div>
+       <div class="feedback mt-6 hidden rounded-2xl border border-[#82c59b] bg-[#eaf8ef] p-5" data-feedback="correct">
+        <h3 data-template-id="correct-heading" class="canva-text font-bold text-[#125f30]"></h3>
+        <p data-template-id="q2-correct" class="canva-text mt-1 text-[#1d6b38]"></p>
+       </div>
+       <div class="feedback mt-6 hidden rounded-2xl border border-[#efb2ba] bg-[#fff0f1] p-5" data-feedback="wrong">
+        <h3 data-template-id="wrong-heading" class="canva-text font-bold text-[#9f2333]"></h3>
+        <p data-template-id="q2-wrong" class="canva-text mt-1 text-[#792030]"></p>
+       </div><button data-template-id="q2-next-button" class="canva-button next-button mt-6 hidden rounded-xl bg-[#283b8f] px-6 py-3 font-bold text-white hover:bg-[#1d2e75]" type="button" data-next></button>
+      </article>
+      <article class="question-panel quiz-panel rounded-3xl bg-white p-6 sm:p-10" data-question="2" aria-labelledby="q3-title">
+       <p data-template-id="q3-tag" class="canva-tag mb-4 inline-block rounded-full bg-[#e7ecff] px-3 py-1 text-sm font-bold text-[#283b8f]"></p>
+       <h2 id="q3-title" data-template-id="q3-question" class="canva-text mb-7 text-2xl font-bold leading-tight"></h2>
+       <div class="grid gap-3"><button data-template-id="q3-a0" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="0"></button><button data-template-id="q3-a1" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="1"></button><button data-template-id="q3-a2" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="2"></button><button data-template-id="q3-a3" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="3"></button>
+       </div>
+       <div class="feedback mt-6 hidden rounded-2xl border border-[#82c59b] bg-[#eaf8ef] p-5" data-feedback="correct">
+        <h3 data-template-id="correct-heading" class="canva-text font-bold text-[#125f30]"></h3>
+        <p data-template-id="q3-correct" class="canva-text mt-1 text-[#1d6b38]"></p>
+       </div>
+       <div class="feedback mt-6 hidden rounded-2xl border border-[#efb2ba] bg-[#fff0f1] p-5" data-feedback="wrong">
+        <h3 data-template-id="wrong-heading" class="canva-text font-bold text-[#9f2333]"></h3>
+        <p data-template-id="q3-wrong" class="canva-text mt-1 text-[#792030]"></p>
+       </div><button data-template-id="q3-next-button" class="canva-button next-button mt-6 hidden rounded-xl bg-[#283b8f] px-6 py-3 font-bold text-white hover:bg-[#1d2e75]" type="button" data-next></button>
+      </article>
+      <article class="question-panel quiz-panel rounded-3xl bg-white p-6 sm:p-10" data-question="3" aria-labelledby="q4-title">
+       <p data-template-id="q4-tag" class="canva-tag mb-4 inline-block rounded-full bg-[#e7ecff] px-3 py-1 text-sm font-bold text-[#283b8f]"></p>
+       <h2 id="q4-title" data-template-id="q4-question" class="canva-text mb-7 text-2xl font-bold leading-tight"></h2>
+       <div class="grid gap-3"><button data-template-id="q4-a0" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="0"></button><button data-template-id="q4-a1" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="1"></button><button data-template-id="q4-a2" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="2"></button><button data-template-id="q4-a3" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="3"></button>
+       </div>
+       <div class="feedback mt-6 hidden rounded-2xl border border-[#82c59b] bg-[#eaf8ef] p-5" data-feedback="correct">
+        <h3 data-template-id="correct-heading" class="canva-text font-bold text-[#125f30]"></h3>
+        <p data-template-id="q4-correct" class="canva-text mt-1 text-[#1d6b38]"></p>
+       </div>
+       <div class="feedback mt-6 hidden rounded-2xl border border-[#efb2ba] bg-[#fff0f1] p-5" data-feedback="wrong">
+        <h3 data-template-id="wrong-heading" class="canva-text font-bold text-[#9f2333]"></h3>
+        <p data-template-id="q4-wrong" class="canva-text mt-1 text-[#792030]"></p>
+       </div><button data-template-id="q4-next-button" class="canva-button next-button mt-6 hidden rounded-xl bg-[#283b8f] px-6 py-3 font-bold text-white hover:bg-[#1d2e75]" type="button" data-next></button>
+      </article>
+      <article class="question-panel quiz-panel rounded-3xl bg-white p-6 sm:p-10" data-question="4" aria-labelledby="q5-title">
+       <p data-template-id="q5-tag" class="canva-tag mb-4 inline-block rounded-full bg-[#e7ecff] px-3 py-1 text-sm font-bold text-[#283b8f]"></p>
+       <h2 id="q5-title" data-template-id="q5-question" class="canva-text mb-7 text-2xl font-bold leading-tight"></h2>
+       <div class="grid gap-3"><button data-template-id="q5-a0" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="0"></button><button data-template-id="q5-a1" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="1"></button><button data-template-id="q5-a2" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="2"></button><button data-template-id="q5-a3" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="3"></button>
+       </div>
+       <div class="feedback mt-6 hidden rounded-2xl border border-[#82c59b] bg-[#eaf8ef] p-5" data-feedback="correct">
+        <h3 data-template-id="correct-heading" class="canva-text font-bold text-[#125f30]"></h3>
+        <p data-template-id="q5-correct" class="canva-text mt-1 text-[#1d6b38]"></p>
+       </div>
+       <div class="feedback mt-6 hidden rounded-2xl border border-[#efb2ba] bg-[#fff0f1] p-5" data-feedback="wrong">
+        <h3 data-template-id="wrong-heading" class="canva-text font-bold text-[#9f2333]"></h3>
+        <p data-template-id="q5-wrong" class="canva-text mt-1 text-[#792030]"></p>
+       </div><button data-template-id="q5-next-button" class="canva-button next-button mt-6 hidden rounded-xl bg-[#283b8f] px-6 py-3 font-bold text-white hover:bg-[#1d2e75]" type="button" data-next></button>
+      </article>
+      <article class="question-panel quiz-panel rounded-3xl bg-white p-6 sm:p-10" data-question="5" aria-labelledby="q6-title">
+       <p data-template-id="q6-tag" class="canva-tag mb-4 inline-block rounded-full bg-[#e7ecff] px-3 py-1 text-sm font-bold text-[#283b8f]"></p>
+       <h2 id="q6-title" data-template-id="q6-question" class="canva-text mb-7 text-2xl font-bold leading-tight"></h2>
+       <div class="grid gap-3"><button data-template-id="q6-a0" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="0"></button><button data-template-id="q6-a1" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="1"></button><button data-template-id="q6-a2" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="2"></button><button data-template-id="q6-a3" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="3"></button>
+       </div>
+       <div class="feedback mt-6 hidden rounded-2xl border border-[#82c59b] bg-[#eaf8ef] p-5" data-feedback="correct">
+        <h3 data-template-id="correct-heading" class="canva-text font-bold text-[#125f30]"></h3>
+        <p data-template-id="q6-correct" class="canva-text mt-1 text-[#1d6b38]"></p>
+       </div>
+       <div class="feedback mt-6 hidden rounded-2xl border border-[#efb2ba] bg-[#fff0f1] p-5" data-feedback="wrong">
+        <h3 data-template-id="wrong-heading" class="canva-text font-bold text-[#9f2333]"></h3>
+        <p data-template-id="q6-wrong" class="canva-text mt-1 text-[#792030]"></p>
+       </div><button data-template-id="q6-next-button" class="canva-button next-button mt-6 hidden rounded-xl bg-[#283b8f] px-6 py-3 font-bold text-white hover:bg-[#1d2e75]" type="button" data-next></button>
+      </article>
+      <article class="question-panel quiz-panel rounded-3xl bg-white p-6 sm:p-10" data-question="6" aria-labelledby="q7-title">
+       <p data-template-id="q7-tag" class="canva-tag mb-4 inline-block rounded-full bg-[#e7ecff] px-3 py-1 text-sm font-bold text-[#283b8f]"></p>
+       <h2 id="q7-title" data-template-id="q7-question" class="canva-text mb-7 text-2xl font-bold leading-tight"></h2>
+       <div class="grid gap-3"><button data-template-id="q7-a0" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="0"></button><button data-template-id="q7-a1" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="1"></button><button data-template-id="q7-a2" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="2"></button><button data-template-id="q7-a3" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="3"></button>
+       </div>
+       <div class="feedback mt-6 hidden rounded-2xl border border-[#82c59b] bg-[#eaf8ef] p-5" data-feedback="correct">
+        <h3 data-template-id="correct-heading" class="canva-text font-bold text-[#125f30]"></h3>
+        <p data-template-id="q7-correct" class="canva-text mt-1 text-[#1d6b38]"></p>
+       </div>
+       <div class="feedback mt-6 hidden rounded-2xl border border-[#efb2ba] bg-[#fff0f1] p-5" data-feedback="wrong">
+        <h3 data-template-id="wrong-heading" class="canva-text font-bold text-[#9f2333]"></h3>
+        <p data-template-id="q7-wrong" class="canva-text mt-1 text-[#792030]"></p>
+       </div><button data-template-id="q7-next-button" class="canva-button next-button mt-6 hidden rounded-xl bg-[#283b8f] px-6 py-3 font-bold text-white hover:bg-[#1d2e75]" type="button" data-next></button>
+      </article>
+      <article class="question-panel quiz-panel rounded-3xl bg-white p-6 sm:p-10" data-question="7" aria-labelledby="q8-title">
+       <p data-template-id="q8-tag" class="canva-tag mb-4 inline-block rounded-full bg-[#e7ecff] px-3 py-1 text-sm font-bold text-[#283b8f]"></p>
+       <h2 id="q8-title" data-template-id="q8-question" class="canva-text mb-7 text-2xl font-bold leading-tight"></h2>
+       <div class="grid gap-3"><button data-template-id="q8-a0" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="0"></button><button data-template-id="q8-a1" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="1"></button><button data-template-id="q8-a2" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="2"></button><button data-template-id="q8-a3" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="3"></button>
+       </div>
+       <div class="feedback mt-6 hidden rounded-2xl border border-[#82c59b] bg-[#eaf8ef] p-5" data-feedback="correct">
+        <h3 data-template-id="correct-heading" class="canva-text font-bold text-[#125f30]"></h3>
+        <p data-template-id="q8-correct" class="canva-text mt-1 text-[#1d6b38]"></p>
+       </div>
+       <div class="feedback mt-6 hidden rounded-2xl border border-[#efb2ba] bg-[#fff0f1] p-5" data-feedback="wrong">
+        <h3 data-template-id="wrong-heading" class="canva-text font-bold text-[#9f2333]"></h3>
+        <p data-template-id="q8-wrong" class="canva-text mt-1 text-[#792030]"></p>
+       </div><button data-template-id="q8-next-button" class="canva-button next-button mt-6 hidden rounded-xl bg-[#283b8f] px-6 py-3 font-bold text-white hover:bg-[#1d2e75]" type="button" data-next></button>
+      </article>
+      <article class="question-panel quiz-panel rounded-3xl bg-white p-6 sm:p-10" data-question="8" aria-labelledby="q9-title">
+       <p data-template-id="q9-tag" class="canva-tag mb-4 inline-block rounded-full bg-[#e7ecff] px-3 py-1 text-sm font-bold text-[#283b8f]"></p>
+       <h2 id="q9-title" data-template-id="q9-question" class="canva-text mb-7 text-2xl font-bold leading-tight"></h2>
+       <div class="grid gap-3"><button data-template-id="q9-a0" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="0"></button><button data-template-id="q9-a1" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="1"></button><button data-template-id="q9-a2" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="2"></button><button data-template-id="q9-a3" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="3"></button>
+       </div>
+       <div class="feedback mt-6 hidden rounded-2xl border border-[#82c59b] bg-[#eaf8ef] p-5" data-feedback="correct">
+        <h3 data-template-id="correct-heading" class="canva-text font-bold text-[#125f30]"></h3>
+        <p data-template-id="q9-correct" class="canva-text mt-1 text-[#1d6b38]"></p>
+       </div>
+       <div class="feedback mt-6 hidden rounded-2xl border border-[#efb2ba] bg-[#fff0f1] p-5" data-feedback="wrong">
+        <h3 data-template-id="wrong-heading" class="canva-text font-bold text-[#9f2333]"></h3>
+        <p data-template-id="q9-wrong" class="canva-text mt-1 text-[#792030]"></p>
+       </div><button data-template-id="q9-next-button" class="canva-button next-button mt-6 hidden rounded-xl bg-[#283b8f] px-6 py-3 font-bold text-white hover:bg-[#1d2e75]" type="button" data-next></button>
+      </article>
+      <article class="question-panel quiz-panel rounded-3xl bg-white p-6 sm:p-10" data-question="9" aria-labelledby="q10-title">
+       <p data-template-id="q10-tag" class="canva-tag mb-4 inline-block rounded-full bg-[#e7ecff] px-3 py-1 text-sm font-bold text-[#283b8f]"></p>
+       <h2 id="q10-title" data-template-id="q10-question" class="canva-text mb-7 text-2xl font-bold leading-tight"></h2>
+       <div class="grid gap-3"><button data-template-id="q10-a0" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="0"></button><button data-template-id="q10-a1" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="1"></button><button data-template-id="q10-a2" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="2"></button><button data-template-id="q10-a3" class="canva-button option-button rounded-xl px-5 py-4 text-left font-semibold" type="button" data-choice="3"></button>
+       </div>
+       <div class="feedback mt-6 hidden rounded-2xl border border-[#82c59b] bg-[#eaf8ef] p-5" data-feedback="correct">
+        <h3 data-template-id="correct-heading" class="canva-text font-bold text-[#125f30]"></h3>
+        <p data-template-id="q10-correct" class="canva-text mt-1 text-[#1d6b38]"></p>
+       </div>
+       <div class="feedback mt-6 hidden rounded-2xl border border-[#efb2ba] bg-[#fff0f1] p-5" data-feedback="wrong">
+        <h3 data-template-id="wrong-heading" class="canva-text font-bold text-[#9f2333]"></h3>
+        <p data-template-id="q10-wrong" class="canva-text mt-1 text-[#792030]"></p>
+       </div><button data-template-id="finish-button" class="canva-button next-button mt-6 hidden rounded-xl bg-[#e84e87] px-6 py-3 font-bold text-white hover:bg-[#cc346e]" type="button" data-next></button>
+      </article>
+     </section>
+     <section id="results-panel" class="quiz-panel hidden rounded-3xl bg-white p-8 text-center sm:p-12" aria-live="polite">
+      <div class="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-[#e7ecff] text-[#283b8f]"><i data-lucide="award" aria-hidden="true"></i>
+      </div>
+      <h2 data-template-id="results-heading" class="canva-text text-3xl font-bold"></h2>
+      <p id="final-score" class="binary my-4 text-5xl font-bold text-[#283b8f]">0 / 10</p>
+      <p data-template-id="results-message" class="canva-text mx-auto max-w-lg text-lg text-slate-600"></p><button data-template-id="restart-button" id="restart-button" class="canva-button next-button mt-8 rounded-xl bg-[#283b8f] px-6 py-3 font-bold text-white hover:bg-[#1d2e75]" type="button"></button>
+     </section>
+    </div>
+   </main>
+  </div>
+  <script src="/_sdk/5629ea66dc55d54f.editing_sdk.js" integrity="sha512-snPYzGvgiTEMUBOb+HlCBkFeiM0IRX4hcgA78wvalhC0WnJtaX+RCbosPWtNqZsZ7sZ9NwN0oePZYa+IlMwa+w=="></script>
+  <script>
+    // Standalone fallback: Canva normally supplies this copy through config.json.
+    // Keeping the quiz copy here also lets a saved HTML file run by itself.
+    const standaloneCopy = {
+      "header-kicker":"National 5 Computing Science","quiz-title":"Translator Programs Quiz","score-label":"Live score","progress-caption":"Choose the best answer","correct-heading":"Correct!","wrong-heading":"Not quite","next-button":"Continue","finish-button":"See my results","results-heading":"Quiz complete!","results-message":"Well done for reviewing the key ideas about translators, machine code, and the fetch-decode-execute cycle.","restart-button":"Try again",
+      "q1-tag":"Languages","q1-question":"Which two symbols make up machine code?","q1-a0":"A and B","q1-a1":"0 and 1","q1-a2":"True and False","q1-a3":"On and Off only","q1-correct":"Machine code uses binary: 0 and 1.","q1-wrong":"The correct answer is 0 and 1. Machine code is made from these two binary symbols.",
+      "q2-tag":"Languages","q2-question":"Why must high-level language source code be translated?","q2-a0":"To make it longer","q2-a1":"To make it English","q2-a2":"Computers only understand machine code","q2-a3":"To store it permanently in RAM","q2-correct":"Exactly. A computer needs instructions translated into machine code.","q2-wrong":"The correct answer is that computers only understand machine code, so high-level source code must be translated.",
+      "q3-tag":"Translator programs","q3-question":"What does an interpreter do?","q3-a0":"Translates and executes one line at a time","q3-a1":"Translates an entire program once and saves it","q3-a2":"Only checks spelling in source code","q3-a3":"Fetches instructions directly from storage","q3-correct":"An interpreter works line by line, translating and executing each line.","q3-wrong":"The correct answer is that an interpreter translates and executes one line at a time.",
+      "q4-tag":"Interpreter","q4-question":"Which is an advantage of using an interpreter?","q4-a0":"Source code is hidden from users","q4-a1":"Errors can be identified line by line","q4-a2":"It never needs to be loaded into RAM","q4-a3":"It produces an executable file every time","q4-correct":"Correct. Line-by-line feedback can make interpreted programs easier to debug.","q4-wrong":"The correct answer is that errors can be identified line by line, which helps with debugging.",
+      "q5-tag":"Interpreter","q5-question":"What must happen every time an interpreted program is executed?","q5-a0":"The source code is deleted","q5-a1":"A compiler is downloaded","q5-a2":"The program is re-interpreted","q5-a3":"Object code is installed","q5-correct":"Yes. Interpreted programs must be translated again for every execution.","q5-wrong":"The correct answer is that the program is re-interpreted every time it runs.",
+      "q6-tag":"Compiler","q6-question":"How does a compiler translate source code?","q6-a0":"One character at a time","q6-a1":"The entire program at once","q6-a2":"Only when an error is found","q6-a3":"Only one line each week","q6-correct":"A compiler translates the entire source code into machine code in one go.","q6-wrong":"The correct answer is the entire program at once. This creates code that can be run again later.",
+      "q7-tag":"Compiler","q7-question":"What is produced by a compiler that can be saved and run later?","q7-a0":"Source code","q7-a1":"A spoken translation","q7-a2":"RAM","q7-a3":"Object code","q7-correct":"Correct. A compiler creates object code, which can be saved and executed later.","q7-wrong":"The correct answer is object code. It is the translated machine code output from compilation.",
+      "q8-tag":"Compiled applications","q8-question":"Which statement is true about a compiled application downloaded from an app store?","q8-a0":"You cannot see its source code","q8-a1":"It must be re-interpreted every time","q8-a2":"It only runs while the compiler is open","q8-a3":"It contains only English words","q8-correct":"Right. Compiled applications do not reveal their original source code.","q8-wrong":"The correct answer is that you cannot see the source code in a compiled application.",
+      "q9-tag":"Fetch-decode-execute","q9-question":"What is the correct order of the fetch-decode-execute cycle?","q9-a0":"Decode, execute, fetch","q9-a1":"Execute, fetch, decode","q9-a2":"Fetch, decode, execute","q9-a3":"Fetch, execute, delete","q9-correct":"Correct. The processor fetches an instruction, decodes it, then executes it.","q9-wrong":"The correct order is fetch, decode, execute.",
+      "q10-tag":"Memory and processing","q10-question":"Where are programs and data fetched from before being decoded and executed?","q10-a0":"The internet","q10-a1":"Main memory (RAM)","q10-a2":"The keyboard","q10-a3":"The compiler only","q10-correct":"Exactly. Programs and data are fetched from main memory, also called RAM.","q10-wrong":"The correct answer is main memory (RAM). Instructions and data are fetched from RAM for processing."
+    };
+    Object.entries(standaloneCopy).forEach(([id, text]) => {
+      const element = document.querySelector(`[data-template-id="${id}"]`);
+      if (element && !element.textContent.trim()) element.textContent = text;
+    });
+    document.querySelectorAll('[data-next][data-template-id]').forEach((button) => {
+      if (!button.textContent.trim()) button.textContent = button.id === 'finish-button' ? standaloneCopy['finish-button'] : standaloneCopy['next-button'];
+    });
+
+    const correctAnswers = [1, 2, 0, 1, 2, 1, 3, 0, 2, 1];
+    let currentQuestion = 0;
+    let score = 0;
+
+    const panels = [...document.querySelectorAll(".question-panel")];
+    const scoreDisplay = document.getElementById("score-display");
+    const progressText = document.getElementById("progress-text");
+    const progressBar = document.getElementById("progress-bar");
+    const quizArea = document.getElementById("quiz-area");
+    const resultsPanel = document.getElementById("results-panel");
+
+    function updateStatus() {
+      scoreDisplay.textContent = score + " / 10";
+      progressText.textContent = "Question " + (currentQuestion + 1) + " of 10";
+      progressBar.style.width = ((currentQuestion + 1) * 10) + "%";
+    }
+
+    function selectAnswer(button) {
+      const panel = button.closest(".question-panel");
+      const questionIndex = Number(panel.dataset.question);
+      const selectedChoice = Number(button.dataset.choice);
+      const isCorrect = selectedChoice === correctAnswers[questionIndex];
+
+      panel.querySelectorAll("[data-choice]").forEach((choiceButton) => {
+        choiceButton.disabled = true;
+        if (Number(choiceButton.dataset.choice) === correctAnswers[questionIndex]) {
+          choiceButton.classList.add("is-correct");
+        }
+      });
+
+      if (isCorrect) {
+        score += 1;
+        button.classList.add("is-correct");
+        panel.querySelector('[data-feedback="correct"]').classList.remove("hidden");
+      } else {
+        button.classList.add("is-wrong");
+        panel.querySelector('[data-feedback="wrong"]').classList.remove("hidden");
+      }
+
+      scoreDisplay.textContent = score + " / 10";
+      panel.querySelector("[data-next]").classList.remove("hidden");
+    }
+
+    function showQuestion(index) {
+      panels.forEach((panel, panelIndex) => panel.classList.toggle("active", panelIndex === index));
+      currentQuestion = index;
+      updateStatus();
+      panels[index].querySelector("[data-choice]").focus();
+    }
+
+    document.querySelectorAll("[data-choice]").forEach((button) => {
+      button.addEventListener("click", () => selectAnswer(button));
+    });
+
+    document.querySelectorAll("[data-next]").forEach((button) => {
+      button.addEventListener("click", () => {
+        if (currentQuestion === 9) {
+          quizArea.classList.add("hidden");
+          resultsPanel.classList.remove("hidden");
+          progressText.textContent = "Quiz complete";
+          progressBar.style.width = "100%";
+          document.getElementById("final-score").textContent = score + " / 10";
+          document.getElementById("restart-button").focus();
+        } else {
+          showQuestion(currentQuestion + 1);
+        }
+      });
+    });
+
+    document.getElementById("restart-button").addEventListener("click", () => {
+      score = 0;
+      currentQuestion = 0;
+      resultsPanel.classList.add("hidden");
+      quizArea.classList.remove("hidden");
+      panels.forEach((panel, index) => {
+        panel.querySelectorAll("[data-choice]").forEach((button) => {
+          button.disabled = false;
+          button.classList.remove("is-correct", "is-wrong");
+        });
+        panel.querySelectorAll("[data-feedback], [data-next]").forEach((element) => element.classList.add("hidden"));
+        panel.classList.toggle("active", index === 0);
+      });
+      updateStatus();
+      panels[0].querySelector("[data-choice]").focus();
+    });
+
+    lucide.createIcons();
+  </script>
+ </body>
+</html>
