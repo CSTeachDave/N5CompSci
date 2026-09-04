@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+ <head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260904-05-c4a2e96","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Canva Sans":"YAFLd8sKbwc,2","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAHO2VMiyZo,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAEul-FRQw4,0","Georgia":"YAGzXkO0pEM,0","Helvetica Neue":"YAFcf6CtJfI,0","Impact":"YAFcfnjI7Vk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YAFdJksXcAk,0","Libre Baskerville":"YACgEUFdPdA,0","Manrope":"YAHO2b2feC4,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YADLjI9qxTA,0","Nunito":"YACgEX8C5Gg,0","Oleo Script":"YACgEQQ14jI,0","Phantom Sans":"YAHO2E8Pb88,0","Playfair Display":"YACgEYmuCJE,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Quicksand":"YADWjpfPmdk,0","Raleway":"YACgEVg3xZg,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Spectral":"YAHO2rVUHIM,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Ubuntu":"YACgERDU--Q,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0","ui-monospace":"YADlN8CFZ8Q,0","ui-sans-serif":"YACkoN-xg4g,0"}}');</script><script src="/_sdk/9e99ecf74af2a081.telemetry_sdk.js" integrity="sha512-tZ7fmfTx2KpCLjXQnEuL9azQ4A5+7+xumsx6r/WYVD0zCP/8LP8hDeCypMQesmP+WyAew4g7l5Ah23Bjd6yoVg=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Floating Point Numbers Quiz</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    :root { --navy:#293d90; --pink:#d32f69; --light:#f5f7ff; --ink:#172047; }
+    body { font-family:"Work Sans",sans-serif; color:var(--ink); }
+    .quiz-shell { min-height:calc(100 * min(var(--vh, 1vh), 1vh)); background:linear-gradient(135deg,#eef1ff 0%,#ffffff 48%,#fff2f7 100%); }
+    .quiz-shell::before { content:""; position:fixed; top:0; right:0; width:260px; height:260px; background:linear-gradient(135deg,transparent 0 35%,#8093cd 35% 58%,#293d90 58%); clip-path:polygon(100% 0,100% 100%,0 0); opacity:.9; pointer-events:none; }
+    .question-panel { display:none; }
+    .question-panel.active { display:block; animation:rise .35s ease both; }
+    .answer { border:2px solid #d9def5; transition:transform .18s ease, border-color .18s ease, background .18s ease; }
+    .answer:hover:not(:disabled) { transform:translateY(-2px); border-color:#6075bd; background:#f4f6ff; }
+    .answer.correct { background:#e5f6eb; border-color:#249359; color:#125d35; }
+    .answer.wrong { background:#fff0f1; border-color:#cf3e53; color:#8f1e30; }
+    .answer:disabled { cursor:default; }
+    .feedback { display:none; }
+    .feedback.show { display:block; animation:rise .25s ease both; }
+    .progress-fill { transition:width .35s ease; }
+    @keyframes rise { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+    @media (max-width:640px) { .quiz-card { border-radius:20px; } }
+  </style>
+  <script src="/_sdk/fbe2ebfd64647c54.data_sdk.js" type="text/javascript" integrity="sha512-vkTX6CfvpHc3WbjK+tFJCaDuw4ERA4aEV/e5/7+MMJPMTF4RJYCI6CAwJBT/gtDW+dba4uLSsPUgDjVDHWtgUQ=="></script>
+  <script src="/_sdk/fcb6dc01f91829ac.resizing_sdk.js" type="text/javascript" integrity="sha512-YK8JfnN705qaEaVhiL7pcVB2Rs/BbdX5yxV55Az8zT/1JanyEWTw9HqCF915m9iV1YEaoil8qsjJz03l1Kb0Ug=="></script>
+ </head>
+ <body data-template-id="__page-root" class="w-full">
+  <div class="quiz-shell w-full px-4 py-7 sm:px-8 sm:py-10">
+   <header class="mx-auto max-w-4xl relative z-10">
+    <div data-template-id="quiz-header" class="canva-header rounded-t-[28px] px-6 py-7 sm:px-10" style="background:#293d90">
+     <div class="flex items-start justify-between gap-4">
+      <div>
+       <p data-template-id="quiz-kicker" class="canva-text mb-2 font-semibold uppercase tracking-[0.18em]"></p>
+       <h1 data-template-id="quiz-title" class="canva-text font-extrabold leading-tight"></h1>
+      </div><i data-lucide="binary" class="mt-1 shrink-0 text-white" style="width:34px;height:34px"></i>
+     </div>
+    </div>
+   </header>
+   <main class="mx-auto max-w-4xl relative z-10">
+    <section data-template-id="quiz-main-panel" class="canva-panel quiz-card rounded-b-[28px] bg-white px-6 py-7 shadow-xl shadow-blue-950/10 sm:px-10 sm:py-9">
+     <div class="mb-8">
+      <div class="mb-3 flex items-center justify-between gap-3">
+       <p data-template-id="progress-label" class="canva-text font-semibold"></p>
+       <p id="progress-count" class="font-bold text-[#293d90]" aria-live="polite">1 / 10</p>
+      </div>
+      <div class="h-3 overflow-hidden rounded-full bg-[#e7eaf8]">
+       <div id="progress-fill" class="progress-fill h-full rounded-full bg-[#d32f69]" style="width:10%"></div>
+      </div>
+     </div>
+     <section class="question-panel active" data-question="0">
+      <h2 data-template-id="q1-question" class="canva-text mb-6 font-bold leading-snug"></h2>
+      <div class="space-y-3" role="group" aria-label="Question 1 answers">
+       <button data-template-id="q1-a" class="canva-button answer w-full rounded-xl px-5 py-4 text-left font-medium" data-correct="false"></button> <button data-template-id="q1-b" class="canva-button answer w-full rounded-xl px-5 py-4 text-left font-medium" data-correct="true"></button> <button data-template-id="q1-c" class="canva-button answer w-full rounded-xl px-5 py-4 text-left font-medium" data-correct="false"></button>
+      </div>
+      <div data-template-id="q1-correct" class="canva-banner feedback mt-6 rounded-xl p-4" style="background:#e5f6eb"></div>
+      <div data-template-id="q1-wrong" class="canva-banner feedback mt-6 rounded-xl p-4" style="background:#fff0f1"></div>
+     </section>
+     <section class="question-panel" data-question="1">
+      <h2 data-template-id="q2-question" class="canva-text mb-6 font-bold leading-snug"></h2>
+      <div class="space-y-3" role="group" aria-label="Question 2 answers">
+       <button data-template-id="q2-a" class="canva-button answer w-full rounded-xl px-5 py-4 text-left font-medium" data-correct="false"></button> <button data-template-id="q2-b" class="canva-button answer w-full rounded-xl px-5 py-4 text-left font-medium" data-correct="true"></button> <button data-template-id="q2-c" class="canva-button answer w-full rounded-xl px-5 py-4 text-left font-medium" data-correct="false"></button>
+      </div>
+      <div data-template-id="q2-correct" class="canva-banner feedback mt-6 rounded-xl p-4" style="background:#e5f6eb"></div>
+      <div data-template-id="q2-wrong" class="canva-banner feedback mt-6 rounded-xl p-4" style="background:#fff0f1"></div>
+     </section>
+     <section class="question-panel" data-question="2">
+      <h2 data-template-id="q3-question" class="canva-text mb-6 font-bold leading-snug"></h2>
+      <div class="space-y-3" role="group" aria-label="Question 3 answers">
+       <button data-template-id="q3-a" class="canva-button answer w-full rounded-xl px-5 py-4 text-left font-medium" data-correct="true"></button> <button data-template-id="q3-b" class="canva-button answer w-full rounded-xl px-5 py-4 text-left font-medium" data-correct="false"></button> <button data-template-id="q3-c" class="canva-button answer w-full rounded-xl px-5 py-4 text-left font-medium" data-correct="false"></button>
+      </div>
+      <div data-template-id="q3-correct" class="canva-banner feedback mt-6 rounded-xl p-4" style="background:#e5f6eb"></div>
+      <div data-template-id="q3-wrong" class="canva-banner feedback mt-6 rounded-xl p-4" style="background:#fff0f1"></div>
+     </section>
+     <section class="question-panel" data-question="3">
+      <h2 data-template-id="q4-question" class="canva-text mb-6 font-bold leading-snug"></h2>
+      <div class="space-y-3" role="group" aria-label="Question 4 answers">
+       <button data-template-id="q4-a" class="canva-button answer w-full rounded-xl px-5 py-4 text-left font-medium" data-correct="false"></button> <button data-template-id="q4-b" class="canva-button answer w-full rounded-xl px-5 py-4 text-left font-medium" data-correct="true"></button> <button data-template-id="q4-c" class="canva-button answer w-full rounded-xl px-5 py-4 text-left font-medium" data-correct="false"></button>
+      </div>
+      <div data-template-id="q4-correct" class="canva-banner feedback mt-6 rounded-xl p-4" style="background:#e5f6eb"></div>
+      <div data-template-id="q4-wrong" class="canva-banner feedback mt-6 rounded-xl p-4" style="background:#fff0f1"></div>
+     </section>
+     <section class="question-panel" data-question="4">
+      <h2 data-template-id="q5-question" class="canva-text mb-6 font-bold leading-snug"></h2>
+      <div class="space-y-3" role="group" aria-label="Question 5 answers">
+       <button data-template-id="q5-a" class="canva-button answer w-full rounded-xl px-5 py-4 text-left font-medium" data-correct="false"></button> <button data-template-id="q5-b" class="canva-button answer w-full rounded-xl px-5 py-4 text-left font-medium" data-correct="false"></button> <button data-template-id="q5-c" class="canva-button answer w-full rounded-xl px-5 py-4 text-left font-medium" data-correct="true"></button>
+      </div>
+      <div data-template-id="q5-correct" class="canva-banner feedback mt-6 rounded-xl p-4" style="background:#e5f6eb"></div>
+      <div data-template-id="q5-wrong" class="canva-banner feedback mt-6 rounded-xl p-4" style="background:#fff0f1"></div>
+     </section>
+     <section class="question-panel" data-question="5">
+      <h2 data-template-id="q6-question" class="canva-text mb-6 font-bold leading-snug"></h2>
+      <div class="space-y-3" role="group" aria-label="Question 6 answers">
+       <button data-template-id="q6-a" class="canva-button answer w-full rounded-xl px-5 py-4 text-left font-medium" data-correct="true"></button> <button data-template-id="q6-b" class="canva-button answer w-full rounded-xl px-5 py-4 text-left font-medium" data-correct="false"></button> <button data-template-id="q6-c" class="canva-button answer w-full rounded-xl px-5 py-4 text-left font-medium" data-correct="false"></button>
+      </div>
+      <div data-template-id="q6-correct" class="canva-banner feedback mt-6 rounded-xl p-4" style="background:#e5f6eb"></div>
+      <div data-template-id="q6-wrong" class="canva-banner feedback mt-6 rounded-xl p-4" style="background:#fff0f1"></div>
+     </section>
+     <section class="question-panel" data-question="6">
+      <h2 data-template-id="q7-question" class="canva-text mb-6 font-bold leading-snug"></h2>
+      <div class="space-y-3" role="group" aria-label="Question 7 answers">
+       <button data-template-id="q7-a" class="canva-button answer w-full rounded-xl px-5 py-4 text-left font-medium" data-correct="false"></button> <button data-template-id="q7-b" class="canva-button answer w-full rounded-xl px-5 py-4 text-left font-medium" data-correct="true"></button> <button data-template-id="q7-c" class="canva-button answer w-full rounded-xl px-5 py-4 text-left font-medium" data-correct="false"></button>
+      </div>
+      <div data-template-id="q7-correct" class="canva-banner feedback mt-6 rounded-xl p-4" style="background:#e5f6eb"></div>
+      <div data-template-id="q7-wrong" class="canva-banner feedback mt-6 rounded-xl p-4" style="background:#fff0f1"></div>
+     </section>
+     <section class="question-panel" data-question="7">
+      <h2 data-template-id="q8-question" class="canva-text mb-6 font-bold leading-snug"></h2>
+      <div class="space-y-3" role="group" aria-label="Question 8 answers">
+       <button data-template-id="q8-a" class="canva-button answer w-full rounded-xl px-5 py-4 text-left font-medium" data-correct="false"></button> <button data-template-id="q8-b" class="canva-button answer w-full rounded-xl px-5 py-4 text-left font-medium" data-correct="false"></button> <button data-template-id="q8-c" class="canva-button answer w-full rounded-xl px-5 py-4 text-left font-medium" data-correct="true"></button>
+      </div>
+      <div data-template-id="q8-correct" class="canva-banner feedback mt-6 rounded-xl p-4" style="background:#e5f6eb"></div>
+      <div data-template-id="q8-wrong" class="canva-banner feedback mt-6 rounded-xl p-4" style="background:#fff0f1"></div>
+     </section>
+     <section class="question-panel" data-question="8">
+      <h2 data-template-id="q9-question" class="canva-text mb-6 font-bold leading-snug"></h2>
+      <div class="space-y-3" role="group" aria-label="Question 9 answers">
+       <button data-template-id="q9-a" class="canva-button answer w-full rounded-xl px-5 py-4 text-left font-medium" data-correct="true"></button> <button data-template-id="q9-b" class="canva-button answer w-full rounded-xl px-5 py-4 text-left font-medium" data-correct="false"></button> <button data-template-id="q9-c" class="canva-button answer w-full rounded-xl px-5 py-4 text-left font-medium" data-correct="false"></button>
+      </div>
+      <div data-template-id="q9-correct" class="canva-banner feedback mt-6 rounded-xl p-4" style="background:#e5f6eb"></div>
+      <div data-template-id="q9-wrong" class="canva-banner feedback mt-6 rounded-xl p-4" style="background:#fff0f1"></div>
+     </section>
+     <section class="question-panel" data-question="9">
+      <h2 data-template-id="q10-question" class="canva-text mb-6 font-bold leading-snug"></h2>
+      <div class="space-y-3" role="group" aria-label="Question 10 answers">
+       <button data-template-id="q10-a" class="canva-button answer w-full rounded-xl px-5 py-4 text-left font-medium" data-correct="false"></button> <button data-template-id="q10-b" class="canva-button answer w-full rounded-xl px-5 py-4 text-left font-medium" data-correct="true"></button> <button data-template-id="q10-c" class="canva-button answer w-full rounded-xl px-5 py-4 text-left font-medium" data-correct="false"></button>
+      </div>
+      <div data-template-id="q10-correct" class="canva-banner feedback mt-6 rounded-xl p-4" style="background:#e5f6eb"></div>
+      <div data-template-id="q10-wrong" class="canva-banner feedback mt-6 rounded-xl p-4" style="background:#fff0f1"></div>
+     </section>
+     <div id="next-area" class="mt-7 hidden justify-end">
+      <button data-template-id="next-button" id="next-button" type="button" class="canva-button rounded-xl px-6 py-3 font-bold shadow-sm transition hover:brightness-95" style="background:#293d90"></button>
+     </div>
+     <section id="results-panel" class="hidden text-center py-5">
+      <div data-template-id="results-badge" class="canva-tag mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full" style="background:#fbe1eb">
+       <i data-lucide="award" class="text-[#d32f69]" style="width:32px;height:32px"></i>
+      </div>
+      <h2 data-template-id="results-title" class="canva-text mb-3 font-extrabold"></h2>
+      <p id="final-score" class="mb-2 text-5xl font-extrabold text-[#293d90]" aria-live="polite"></p>
+      <p data-template-id="results-message" class="canva-text mx-auto mb-7 max-w-lg"></p><button data-template-id="restart-button" id="restart-button" type="button" class="canva-button rounded-xl px-6 py-3 font-bold" style="background:#d32f69"></button>
+     </section>
+    </section>
+   </main>
+   <footer class="mx-auto max-w-4xl px-3 pt-5 text-center">
+    <p data-template-id="footer-note" class="canva-text text-sm"></p>
+   </footer>
+  </div>
+  <script src="/_sdk/5629ea66dc55d54f.editing_sdk.js" integrity="sha512-snPYzGvgiTEMUBOb+HlCBkFeiM0IRX4hcgA78wvalhC0WnJtaX+RCbosPWtNqZsZ7sZ9NwN0oePZYa+IlMwa+w=="></script>
+  <script>
+    const panels = Array.from(document.querySelectorAll('.question-panel'));
+    const progress = document.getElementById('progress-count');
+    const progressFill = document.getElementById('progress-fill');
+    const nextArea = document.getElementById('next-area');
+    const nextButton = document.getElementById('next-button');
+    const resultsPanel = document.getElementById('results-panel');
+    let current = 0;
+    let score = 0;
+
+    function updateProgress() {
+      progress.textContent = (current + 1) + ' / 10';
+      progressFill.style.width = ((current + 1) * 10) + '%';
+    }
+
+    document.querySelectorAll('.answer').forEach(button => {
+      button.addEventListener('click', () => {
+        const panel = button.closest('.question-panel');
+        if (panel.dataset.answered === 'true') return;
+        panel.dataset.answered = 'true';
+        const isCorrect = button.dataset.correct === 'true';
+        panel.querySelectorAll('.answer').forEach(answer => {
+          answer.disabled = true;
+          if (answer.dataset.correct === 'true') answer.classList.add('correct');
+        });
+        if (isCorrect) {
+          score++;
+          panel.querySelector('[data-template-id$="-correct"]').classList.add('show');
+        } else {
+          button.classList.add('wrong');
+          panel.querySelector('[data-template-id$="-wrong"]').classList.add('show');
+        }
+        nextArea.classList.remove('hidden');
+        nextArea.classList.add('flex');
+      });
+    });
+
+    nextButton.addEventListener('click', () => {
+      panels[current].classList.remove('active');
+      current++;
+      if (current < panels.length) {
+        panels[current].classList.add('active');
+        nextArea.classList.add('hidden');
+        nextArea.classList.remove('flex');
+        updateProgress();
+      } else {
+        nextArea.classList.add('hidden');
+        nextArea.classList.remove('flex');
+        document.querySelector('.mb-8').classList.add('hidden');
+        resultsPanel.classList.remove('hidden');
+        document.getElementById('final-score').textContent = score + ' / 10';
+      }
+    });
+
+    document.getElementById('restart-button').addEventListener('click', () => {
+      current = 0;
+      score = 0;
+      panels.forEach((panel, index) => {
+        panel.dataset.answered = 'false';
+        panel.classList.toggle('active', index === 0);
+        panel.querySelectorAll('.answer').forEach(answer => {
+          answer.disabled = false;
+          answer.classList.remove('correct', 'wrong');
+        });
+        panel.querySelectorAll('.feedback').forEach(feedback => feedback.classList.remove('show'));
+      });
+      resultsPanel.classList.add('hidden');
+      document.querySelector('.mb-8').classList.remove('hidden');
+      updateProgress();
+    });
+
+    const fallbackText = {
+      'quiz-kicker':'National 5 Computing Science','quiz-title':'Floating Point Numbers Quiz',
+      'progress-label':'Your progress','next-button':'Next question','restart-button':'Try again',
+      'footer-note':'Based on the Floating Point Numbers lesson.','results-title':'Quiz complete!','results-message':'Great effort. Review the feedback above and try again whenever you want to strengthen your understanding.',
+      'q1-question':'Which type of number is floating point representation used to store?',
+      'q1-a':'Only whole numbers','q1-b':'Real numbers with decimal portions','q1-c':'Only binary digits',
+      'q2-question':'What are the two stored parts of a floating point number?',
+      'q2-a':'Base and byte','q2-b':'Mantissa and exponent','q2-c':'Integer and decimal point',
+      'q3-question':'What does the mantissa represent?',
+      'q3-a':'All the significant digits in the number','q3-b':'The number of bytes used','q3-c':'The base of the number system',
+      'q4-question':'What does the exponent show in scientific notation?',
+      'q4-a':'How many bits are in a byte','q4-b':'How far the decimal point moves','q4-c':'How many significant digits exist',
+      'q5-question':'In the lesson example, what is the mantissa for 4.2 × 10⁸ after the decimal point is omitted?',
+      'q5-a':'4','q5-b':'8','q5-c':'42',
+      'q6-question':'Which scientific notation represents 27.5?',
+      'q6-a':'2.75 × 10¹','q6-b':'27.5 × 10¹','q6-c':'2.75 × 10²',
+      'q7-question':'Why is the base not stored with a floating point number?',
+      'q7-a':'It is too large to store','q7-b':'It is implied or already known','q7-c':'It is replaced by the mantissa',
+      'q8-question':'How many bits are used by single-precision floating point format?',
+      'q8-a':'8 bits','q8-b':'16 bits','q8-c':'32 bits',
+      'q9-question':'How many bytes are used by a 32-bit single-precision number?',
+      'q9-a':'4 bytes','q9-b':'8 bytes','q9-c':'32 bytes',
+      'q10-question':'How many bytes are used by a 64-bit double-precision number?',
+      'q10-a':'4 bytes','q10-b':'8 bytes','q10-c':'64 bytes'
+    };
+    Object.entries(fallbackText).forEach(([id, text]) => {
+      const element = document.querySelector('[data-template-id="' + id + '"]');
+      if (element && !element.textContent.trim()) element.textContent = text;
+    });
+    document.querySelectorAll('[data-template-id$="-correct"]').forEach(element => {
+      if (!element.textContent.trim()) element.textContent = 'Correct! Great work.';
+    });
+    document.querySelectorAll('[data-template-id$="-wrong"]').forEach(element => {
+      if (!element.textContent.trim()) element.textContent = 'Not quite. Review the correct answer highlighted above.';
+    });
+    if (window.lucide) lucide.createIcons();
+  </script>
+ </body>
+</html>
