@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Computer Memory — National 5 Quiz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0E1526;
+    --bg-trace: #131C33;
+    --panel: #161F38;
+    --panel-border: #263256;
+    --text: #E7ECF7;
+    --text-dim: #8B96B5;
+    --ram: #4FB8A8;
+    --ram-dim: #1E3A38;
+    --rom: #8B7CF0;
+    --rom-dim: #2A2650;
+    --good: #4ADE80;
+    --bad: #F0716C;
+    --amber: #E8A23D;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Mono', monospace;
+    min-height: 100vh;
+  }
+
+  body {
+    background-image:
+      linear-gradient(var(--bg-trace) 1px, transparent 1px),
+      linear-gradient(90deg, var(--bg-trace) 1px, transparent 1px);
+    background-size: 34px 34px;
+    background-position: -1px -1px;
+  }
+
+  h1, h2, h3, .display {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+
+  .kicker {
+    color: var(--amber);
+    font-size: 0.82rem;
+    letter-spacing: 0.02em;
+    margin: 0 0 6px;
+  }
+
+  h1 {
+    font-size: 1.9rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.15;
+  }
+
+  .subtitle {
+    color: var(--text-dim);
+    font-size: 0.92rem;
+    margin-top: 8px;
+    max-width: 46ch;
+  }
+
+  /* Memory map: progress shown as addressed memory cells */
+  .memmap {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .cell {
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--panel-border);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    background: var(--panel);
+    transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+  }
+
+  .cell.current {
+    border-color: var(--amber);
+    color: var(--amber);
+  }
+
+  .cell.correct {
+    background: var(--ram-dim);
+    border-color: var(--ram);
+    color: var(--ram);
+  }
+
+  .cell.incorrect {
+    background: var(--rom-dim);
+    border-color: var(--bad);
+    color: var(--bad);
+  }
+
+  main {
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 10px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  main::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--ram), var(--rom));
+  }
+
+  .addr {
+    color: var(--text-dim);
+    font-size: 0.78rem;
+    margin-bottom: 14px;
+  }
+
+  .addr span { color: var(--amber); }
+
+  .prompt {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.28rem;
+    font-weight: 700;
+    line-height: 1.4;
+    margin: 0 0 22px;
+  }
+
+  .options {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--panel-border);
+    color: var(--text);
+    padding: 14px 16px;
+    border-radius: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+
+  .option:hover:not(:disabled) {
+    border-color: var(--ram);
+  }
+
+  .option .tag {
+    flex: 0 0 auto;
+    width: 26px;
+    height: 26px;
+    border-radius: 5px;
+    border: 1px solid var(--panel-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+  }
+
+  .option:disabled { cursor: default; }
+
+  .option.selected-correct {
+    border-color: var(--good);
+    background: rgba(74, 222, 128, 0.08);
+  }
+  .option.selected-correct .tag {
+    border-color: var(--good);
+    color: var(--good);
+  }
+
+  .option.selected-incorrect {
+    border-color: var(--bad);
+    background: rgba(240, 113, 108, 0.08);
+  }
+  .option.selected-incorrect .tag {
+    border-color: var(--bad);
+    color: var(--bad);
+  }
+
+  .option.reveal-correct:not(.selected-correct) {
+    border-color: var(--good);
+  }
+
+  .hint-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+  }
+
+  .hint-btn {
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .hint-btn:hover { color: var(--amber); }
+
+  .hint-box {
+    display: none;
+    color: var(--amber);
+    font-size: 0.85rem;
+    background: rgba(232, 162, 61, 0.08);
+    border: 1px solid rgba(232, 162, 61, 0.3);
+    padding: 10px 12px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+  }
+
+  .hint-box.show { display: block; }
+
+  .feedback {
+    display: none;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 20px;
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+
+  .feedback.show { display: block; }
+
+  .feedback.good {
+    background: rgba(74, 222, 128, 0.08);
+    border: 1px solid rgba(74, 222, 128, 0.35);
+  }
+
+  .feedback.bad {
+    background: rgba(240, 113, 108, 0.08);
+    border: 1px solid rgba(240, 113, 108, 0.35);
+  }
+
+  .feedback .verdict {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .feedback.good .verdict { color: var(--good); }
+  .feedback.bad .verdict { color: var(--bad); }
+
+  .controls {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .next-btn {
+    background: var(--ram);
+    color: #06231F;
+    border: none;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 12px 22px;
+    border-radius: 7px;
+    cursor: pointer;
+    display: none;
+  }
+
+  .next-btn.show { display: inline-flex; align-items: center; gap: 6px; }
+  .next-btn:hover { filter: brightness(1.08); }
+
+  /* Results screen */
+  .results { text-align: left; }
+
+  .results .score-line {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin: 6px 0 4px;
+  }
+
+  .results .score-sub {
+    color: var(--text-dim);
+    margin-bottom: 26px;
+    font-size: 0.9rem;
+  }
+
+  .dump {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 26px;
+  }
+
+  .dump-row {
+    display: grid;
+    grid-template-columns: 90px 1fr auto;
+    gap: 12px;
+    align-items: center;
+    padding: 10px 12px;
+    border: 1px solid var(--panel-border);
+    border-radius: 6px;
+    font-size: 0.82rem;
+  }
+
+  .dump-row .addr-cell { color: var(--amber); }
+  .dump-row .q-cell { color: var(--text-dim); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .dump-row .status-cell { font-weight: 600; }
+  .dump-row.ok .status-cell { color: var(--good); }
+  .dump-row.no .status-cell { color: var(--bad); }
+
+  .restart-btn {
+    background: transparent;
+    border: 1px solid var(--rom);
+    color: var(--rom);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 12px 22px;
+    border-radius: 7px;
+    cursor: pointer;
+  }
+
+  .restart-btn:hover { background: var(--rom-dim); }
+
+  footer {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    margin-top: 30px;
+  }
+
+  @media (max-width: 560px) {
+    main { padding: 22px; }
+    .prompt { font-size: 1.1rem; }
+    .results .score-line { font-size: 1.9rem; }
+    .dump-row { grid-template-columns: 70px 1fr auto; font-size: 0.74rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div>
+      <p class="kicker">National 5 Computing Science — Computer Systems</p>
+      <h1>Computer Memory</h1>
+      <p class="subtitle">RAM, ROM, memory addresses and backing storage — easiest first, hardest last.</p>
+    </div>
+    <div class="memmap" id="memmap" aria-label="Progress through the quiz"></div>
+  </header>
+
+  <main id="quizCard"></main>
+
+  <footer>Each question sits at its own memory address — answer it, then move to the next location.</footer>
+</div>
+
+<script>
+const QUESTIONS = [
+  {
+    prompt: "What does RAM stand for?",
+    options: ["Read Access Memory", "Random Access Memory", "Rapid Access Module", "Read Almost Memory"],
+    correct: 1,
+    explanation: "RAM stands for Random Access Memory — the computer's short-term, working memory.",
+    goodVerdict: "Nice one!",
+    badVerdict: "Not quite."
+  },
+  {
+    prompt: "What does ROM stand for?",
+    options: ["Read Only Memory", "Random Output Memory", "Read Optical Module", "Rewrite Only Memory"],
+    correct: 0,
+    explanation: "ROM stands for Read Only Memory. Its contents cannot normally be changed.",
+    goodVerdict: "Correct!",
+    badVerdict: "Close, try again next time."
+  },
+  {
+    prompt: "Which type of memory is described as 'volatile'?",
+    options: ["ROM", "RAM", "Hard disk drives", "USB flash drives"],
+    correct: 1,
+    hint: "This memory holds programs and the OS only while the computer is running.",
+    explanation: "RAM is volatile, meaning it requires power to store data. Its contents are lost when the power is switched off.",
+    goodVerdict: "That's right!",
+    badVerdict: "Not this one."
+  },
+  {
+    prompt: "Why is ROM needed in a computer, even though RAM exists?",
+    options: [
+      "ROM is faster than RAM",
+      "ROM retains its contents even when power is lost, so the computer knows what to do when switched on",
+      "ROM can store more data than RAM",
+      "ROM allows files to be permanently saved by the user"
+    ],
+    correct: 1,
+    hint: "Think about what happens the moment you press the power button.",
+    explanation: "Since RAM loses its contents without power, ROM permanently stores essential startup instructions so the computer knows what to do when switched on.",
+    goodVerdict: "Exactly right!",
+    badVerdict: "Have another think."
+  },
+  {
+    prompt: "What is a 'memory address' used for?",
+    options: [
+      "It labels which company manufactured the memory chip",
+      "It is a unique location identifier (in hexadecimal) allowing a memory location to be read from or written to",
+      "It shows how much RAM is installed in a computer",
+      "It is the physical location of the computer on a network"
+    ],
+    correct: 1,
+    hint: "Think of the 'house address' comparison from the lesson.",
+    explanation: "Just like a house has a unique address, every memory location has a unique hexadecimal address, allowing it to be read from or written to.",
+    goodVerdict: "Spot on!",
+    badVerdict: "Not quite — think addresses, not devices."
+  },
+  {
+    prompt: "Which of these is an example of backing storage rather than main memory?",
+    options: ["RAM chip", "ROM chip", "USB flash drive", "CPU register"],
+    correct: 2,
+    explanation: "USB flash drives are solid state backing storage, used to store permanent copies of files — unlike RAM and ROM, which are main memory.",
+    goodVerdict: "Well done!",
+    badVerdict: "Not quite — RAM and ROM are main memory, not backing storage."
+  },
+  {
+    prompt: "A student says: \"If I have 8GB of RAM, that means I can store 8GB of files permanently, even after switching my computer off.\" What is wrong with this statement?",
+    options: [
+      "Nothing — the statement is correct",
+      "RAM capacity has nothing to do with storage size",
+      "RAM is volatile, so anything in it is lost when the power is switched off — permanent storage requires backing storage instead",
+      "8GB of RAM can only store 8GB temporarily but backing storage does not have addresses"
+    ],
+    correct: 2,
+    hint: "Recall what 'volatile' means for RAM.",
+    explanation: "RAM is volatile — its contents are lost without power. It temporarily holds programs and the OS while the computer runs. Permanent storage of files requires backing storage (e.g. HDD, SSD, USB), which retains data without power.",
+    goodVerdict: "Excellent reasoning!",
+    badVerdict: "Think about what 'volatile' really means."
+  }
+];
+
+let current = 0;
+let answered = false;
+const results = new Array(QUESTIONS.length).fill(null); // true/false per question
+
+function hexAddr(i) {
+  return "0x" + (i * 16).toString(16).toUpperCase().padStart(4, "0");
+}
+
+function renderMemMap() {
+  const map = document.getElementById("memmap");
+  map.innerHTML = "";
+  QUESTIONS.forEach((_, i) => {
+    const cell = document.createElement("div");
+    cell.className = "cell";
+    if (results[i] === true) cell.classList.add("correct");
+    else if (results[i] === false) cell.classList.add("incorrect");
+    else if (i === current) cell.classList.add("current");
+    cell.textContent = i + 1;
+    map.appendChild(cell);
+  });
+}
+
+function renderQuestion() {
+  answered = false;
+  const q = QUESTIONS[current];
+  const card = document.getElementById("quizCard");
+
+  const optionLetters = ["A", "B", "C", "D"];
+  card.innerHTML = `
+    <p class="addr">MEM ADDRESS <span>${hexAddr(current)}</span> — QUESTION ${current + 1} OF ${QUESTIONS.length}</p>
+    <p class="prompt">${q.prompt}</p>
+    <div class="options" id="optionsWrap"></div>
+    ${q.hint ? `
+      <div class="hint-row">
+        <button class="hint-btn" id="hintBtn" type="button">show hint</button>
+      </div>
+      <div class="hint-box" id="hintBox">${q.hint}</div>
+    ` : ""}
+    <div class="feedback" id="feedback"></div>
+    <div class="controls">
+      <button class="next-btn" id="nextBtn" type="button">${current === QUESTIONS.length - 1 ? "See results" : "Next"} →</button>
+    </div>
+  `;
+
+  const optionsWrap = document.getElementById("optionsWrap");
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement("button");
+    btn.className = "option";
+    btn.type = "button";
+    btn.innerHTML = `<span class="tag">${optionLetters[i]}</span><span>${opt}</span>`;
+    btn.addEventListener("click", () => selectOption(i));
+    optionsWrap.appendChild(btn);
+  });
+
+  const hintBtn = document.getElementById("hintBtn");
+  if (hintBtn) {
+    hintBtn.addEventListener("click", () => {
+      document.getElementById("hintBox").classList.add("show");
+      hintBtn.disabled = true;
+      hintBtn.style.opacity = "0.5";
+    });
+  }
+
+  document.getElementById("nextBtn").addEventListener("click", goNext);
+  renderMemMap();
+}
+
+function selectOption(i) {
+  if (answered) return;
+  answered = true;
+  const q = QUESTIONS[current];
+  const isCorrect = i === q.correct;
+  results[current] = isCorrect;
+
+  const buttons = document.querySelectorAll(".option");
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+    if (idx === i && isCorrect) btn.classList.add("selected-correct");
+    if (idx === i && !isCorrect) btn.classList.add("selected-incorrect");
+    if (idx === q.correct && !isCorrect) btn.classList.add("reveal-correct");
+  });
+
+  const feedback = document.getElementById("feedback");
+  feedback.classList.add("show", isCorrect ? "good" : "bad");
+  feedback.innerHTML = `<span class="verdict">${isCorrect ? q.goodVerdict : q.badVerdict}</span>${q.explanation}`;
+
+  document.getElementById("nextBtn").classList.add("show");
+  renderMemMap();
+}
+
+function goNext() {
+  if (current < QUESTIONS.length - 1) {
+    current += 1;
+    renderQuestion();
+  } else {
+    renderResults();
+  }
+}
+
+function renderResults() {
+  const score = results.filter(r => r === true).length;
+  const total = QUESTIONS.length;
+  const card = document.getElementById("quizCard");
+
+  let comment;
+  if (score === total) comment = "Full marks — every address read back clean.";
+  else if (score >= total * 0.7) comment = "Solid recall — a couple of addresses to revisit.";
+  else if (score >= total * 0.4) comment = "Getting there — worth another pass over RAM, ROM and addressing.";
+  else comment = "Time to reload the lesson slides and try again.";
+
+  card.innerHTML = `
+    <p class="addr">MEMORY DUMP — QUIZ COMPLETE</p>
+    <div class="results">
+      <p class="score-line">${score} / ${total}</p>
+      <p class="score-sub">${comment}</p>
+      <div class="dump" id="dumpWrap"></div>
+      <button class="restart-btn" id="restartBtn" type="button">Reset memory & retry</button>
+    </div>
+  `;
+
+  const dumpWrap = document.getElementById("dumpWrap");
+  QUESTIONS.forEach((q, i) => {
+    const row = document.createElement("div");
+    row.className = "dump-row " + (results[i] ? "ok" : "no");
+    row.innerHTML = `
+      <span class="addr-cell">${hexAddr(i)}</span>
+      <span class="q-cell">${q.prompt}</span>
+      <span class="status-cell">${results[i] ? "OK" : "ERR"}</span>
+    `;
+    dumpWrap.appendChild(row);
+  });
+
+  document.getElementById("restartBtn").addEventListener("click", () => {
+    current = 0;
+    results.fill(null);
+    renderQuestion();
+  });
+
+  renderMemMap();
+}
+
+renderQuestion();
+</script>
+</body>
+</html>
