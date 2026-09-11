@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+ <head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260911-05-06910f9","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Canva Sans":"YAFLd8sKbwc,2","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAHO2VMiyZo,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAEul-FRQw4,0","Georgia":"YAGzXkO0pEM,0","Helvetica Neue":"YAFcf6CtJfI,0","Impact":"YAFcfnjI7Vk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YAFdJksXcAk,0","Libre Baskerville":"YACgEUFdPdA,0","Manrope":"YAHO2b2feC4,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YADLjI9qxTA,0","Nunito":"YACgEX8C5Gg,0","Oleo Script":"YACgEQQ14jI,0","Phantom Sans":"YAHO2E8Pb88,0","Playfair Display":"YACgEYmuCJE,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Quicksand":"YADWjpfPmdk,0","Raleway":"YACgEVg3xZg,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Spectral":"YAHO2rVUHIM,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Ubuntu":"YACgERDU--Q,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0","ui-monospace":"YADlN8CFZ8Q,0","ui-sans-serif":"YACkoN-xg4g,0"}}');</script><script src="/_sdk/c21197326e9a1154.telemetry_sdk.js" integrity="sha512-Aqwl+NmLtKBcMQM4HY+W9lmBHa+zP5MqSEuYfCjkzt4xeOSv2xNz81cCp7JyXBVrY+zojg5o94FHY/R31v2d3Q=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Storing Graphics Quiz</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #283c8e;
+      --ink-deep: #1d2c70;
+      --paper: #f7f8fc;
+      --pink: #d72c68;
+      --pink-light: #f35c91;
+      --aqua: #21b9c8;
+      --green: #19794f;
+      --red: #b3263d;
+    }
+
+    * { box-sizing: border-box; }
+    body { font-family: "Work Sans", sans-serif; color: #242938; }
+    .mono { font-family: "Space Mono", monospace; }
+    .geo-panel {
+      background:
+        linear-gradient(135deg, transparent 0 70%, rgba(126, 153, 211, .88) 70% 79%, transparent 79%),
+        linear-gradient(45deg, rgba(255,255,255,.10) 0 18%, transparent 18%),
+        var(--ink);
+    }
+    .pixel-grid {
+      background-image: radial-gradient(rgba(40,60,142,.12) 1px, transparent 1px);
+      background-size: 12px 12px;
+    }
+    .answer-btn {
+      border: 2px solid #dde2ee;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+    .answer-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      border-color: #7585bd;
+      box-shadow: 0 8px 18px rgba(40,60,142,.12);
+    }
+    .answer-btn:focus-visible, button:focus-visible {
+      outline: 3px solid #f2bd28;
+      outline-offset: 3px;
+    }
+    .answer-btn.correct { background: #e4f5eb; border-color: var(--green); color: #124c31; }
+    .answer-btn.incorrect { background: #fce8eb; border-color: var(--red); color: #782032; }
+    .answer-btn:disabled { cursor: default; }
+    .option-letter {
+      font-family: "Space Mono", monospace;
+      width: 2rem; height: 2rem; flex: 0 0 2rem;
+    }
+    .fade-in { animation: enter .35s ease both; }
+    @keyframes enter {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js" type="text/javascript"></script>
+  <script src="/_sdk/efe904fe8a212716.data_sdk.js" type="text/javascript" integrity="sha512-oiO0pmn5llS1uDeB2l690YywxqOe/a0U1kzY6RGaLZXtyh9YjTk1CUoK/bJUugc1QbUaJMJ3IE1MtpNY5NBZCw=="></script>
+  <script src="/_sdk/6125e8aa3c264a2d.resizing_sdk.js" type="text/javascript" integrity="sha512-+j9iK2FF/yFSTU389rFqKj3v0s1ELh1r0aj3mqpsVRZujaeWi0WgN7jmTcWLcBq91dz3NCEyXqMtHbwpOxhDYg=="></script>
+ </head>
+ <body data-template-id="__page-root" class="w-full min-h-screen">
+  <header data-template-id="quiz-header" class="canva-header geo-panel text-white">
+   <div class="w-full max-w-5xl mx-auto px-5 py-8 sm:px-8 sm:py-10">
+    <div class="flex items-start justify-between gap-4">
+     <div>
+      <p data-template-id="course-label" class="canva-text mono text-xs tracking-[0.18em] uppercase text-blue-100"></p>
+      <h1 data-template-id="quiz-title" class="canva-text mt-2 font-bold leading-tight"></h1>
+      <p data-template-id="quiz-subtitle" class="canva-text mt-3 max-w-2xl text-blue-50"></p>
+     </div>
+     <div class="hidden sm:grid grid-cols-4 gap-1 mt-2 opacity-90" aria-hidden="true">
+      <span class="w-4 h-4 bg-pink-300"></span><span class="w-4 h-4 bg-blue-300"></span><span class="w-4 h-4 bg-pink-300"></span><span class="w-4 h-4 bg-blue-200"></span> <span class="w-4 h-4 bg-blue-300"></span><span class="w-4 h-4 bg-pink-300"></span><span class="w-4 h-4 bg-blue-200"></span><span class="w-4 h-4 bg-pink-300"></span> <span class="w-4 h-4 bg-pink-300"></span><span class="w-4 h-4 bg-blue-200"></span><span class="w-4 h-4 bg-pink-300"></span><span class="w-4 h-4 bg-blue-300"></span> <span class="w-4 h-4 bg-blue-200"></span><span class="w-4 h-4 bg-pink-300"></span><span class="w-4 h-4 bg-blue-300"></span><span class="w-4 h-4 bg-pink-300"></span>
+     </div>
+    </div>
+   </div>
+  </header>
+  <main class="w-full pixel-grid px-4 py-7 sm:px-6 sm:py-10">
+   <section id="quiz-view" class="w-full max-w-4xl mx-auto" aria-labelledby="quiz-title">
+    <div class="mb-5 flex flex-wrap items-center justify-between gap-3">
+     <div class="rounded-full bg-white border border-slate-200 px-4 py-2 shadow-sm">
+      <span data-template-id="progress-label" class="canva-text text-sm font-semibold text-slate-700"></span> <span id="question-counter" class="mono ml-1 text-sm font-bold text-[#283c8e]" aria-live="polite"></span>
+     </div>
+     <div class="rounded-full bg-[#283c8e] px-4 py-2 text-white shadow-sm">
+      <span data-template-id="score-label" class="canva-text text-sm font-semibold"></span> <span id="live-score" class="mono ml-1 text-sm font-bold" aria-live="polite">0</span>
+     </div>
+    </div>
+    <div class="h-3 overflow-hidden rounded-full bg-[#dfe4f1] mb-6" aria-label="Quiz progress">
+     <div id="progress-bar" class="h-full rounded-full bg-[#21b9c8] transition-all duration-300" style="width: 5%"></div>
+    </div>
+    <article class="rounded-3xl border border-slate-200 bg-white p-5 shadow-xl shadow-[#283c8e]/10 sm:p-9">
+     <p id="question-category" class="mono text-xs font-bold uppercase tracking-[0.15em] text-[#d72c68]"></p>
+     <h2 id="question-text" class="mt-3 text-2xl font-bold leading-snug text-[#202a55] sm:text-3xl"></h2>
+     <div id="answer-list" class="mt-7 grid gap-3" role="group" aria-label="Answer choices"></div>
+     <div id="feedback-panel" class="hidden mt-6 rounded-2xl border p-5" role="status" aria-live="polite">
+      <p id="feedback-title" class="font-bold"></p>
+      <p id="feedback-text" class="mt-1 leading-relaxed"></p>
+     </div>
+     <div class="mt-7 flex justify-end">
+      <button id="next-button" data-template-id="next-button" class="canva-button hidden rounded-xl bg-[#d72c68] px-6 py-3 font-bold text-white shadow-lg transition hover:-translate-y-0.5" type="button">Next question</button>
+     </div>
+    </article>
+   </section>
+   <section id="results-view" class="hidden w-full max-w-4xl mx-auto" aria-labelledby="results-title">
+    <article class="rounded-3xl border border-slate-200 bg-white p-6 text-center shadow-xl shadow-[#283c8e]/10 sm:p-10">
+     <div class="mx-auto grid h-16 w-16 place-items-center rounded-2xl bg-[#e3f6f7] text-3xl" aria-hidden="true">
+      ✦
+     </div>
+     <h2 id="results-title" data-template-id="results-title" class="canva-text mt-5 font-bold text-[#202a55]"></h2>
+     <p id="final-score" class="mono mt-4 text-5xl font-bold text-[#d72c68]" aria-live="polite"></p>
+     <p id="score-message" class="mt-3 text-lg text-slate-600"></p>
+     <p data-template-id="results-note" class="canva-text mt-4 text-sm text-slate-500"></p><button id="restart-button" data-template-id="restart-button" class="canva-button mt-7 rounded-xl px-6 py-3 font-bold shadow-lg transition hover:-translate-y-0.5" type="button"></button>
+    </article>
+    <section class="mt-7" aria-labelledby="review-title">
+     <h3 id="review-title" data-template-id="review-title" class="canva-text font-bold text-[#202a55]"></h3>
+     <div id="review-list" class="mt-4 grid gap-3"></div>
+    </section>
+   </section>
+  </main>
+  <footer data-template-id="quiz-footer" class="canva-footer border-t border-[#1d2c70] bg-[#202f76] px-5 py-5 text-center text-blue-100">
+   <p data-template-id="footer-note" class="canva-text text-sm"></p>
+  </footer>
+  <script src="/_sdk/6f16dc4ffc0cf3fe.editing_sdk.js" integrity="sha512-XcGkt+MVg9QK/rlrq9umdkP9LzshVjIu+vaITjWOSFti+dqk5aHBHkCCQ/IXnnUyJtw0F+lYzvT7m4EfPrBrjg=="></script>
+  <script>
+    const questions = [
+      { category: "Foundations", q: "What does the word pixel stand for?", options: ["Picture element", "Pixelated image layer", "Picture extension", "Primary image location"], correct: 0, explanation: "A pixel is a picture element: one tiny dot that contributes to a bitmap image." },
+      { category: "Bitmap graphics", q: "How does a bitmap image store its picture?", options: ["As a set of individual pixels", "As instructions for shapes", "As a list of file names", "As one continuous colour value"], correct: 0, explanation: "Bitmap graphics store a value for every individual pixel in the image." },
+      { category: "Black and white", q: "In the black-and-white bitmap system used in the presentation, what does 0 represent?", options: ["A white pixel", "A black pixel", "A transparent pixel", "A grey pixel"], correct: 0, explanation: "For this black-and-white representation, 0 is white and 1 is black." },
+      { category: "Black and white", q: "How much storage does one black-and-white pixel require?", options: ["1 bit", "1 byte", "8 bits", "24 bits"], correct: 0, explanation: "There are only two possible values, black or white, so each pixel needs one bit." },
+      { category: "Resolution", q: "What is resolution in an image?", options: ["The number of pixels that make up the image", "The number of colours in the image", "The file type of the image", "The amount of compression used"], correct: 0, explanation: "Resolution describes the total number of pixels in an image, often calculated from width × height." },
+      { category: "Resolution", q: "What is generally true of an image with higher resolution?", options: ["It is clearer and more detailed", "It has fewer pixels", "It uses no storage space", "It becomes a vector image"], correct: 0, explanation: "More pixels allow more detail to be represented, making an image clearer." },
+      { category: "Colour depth", q: "What does colour depth describe?", options: ["How many bits are used to represent a pixel’s colour", "The physical depth of a screen", "The width of a bitmap", "The number of vector shapes"], correct: 0, explanation: "Colour depth is the number of bits used per pixel to encode colour information." },
+      { category: "Colour depth", q: "How many colours can 8-bit colour depth represent?", options: ["256", "8", "24", "16,777,216"], correct: 0, explanation: "Eight bits give 2⁸ possible values, which equals 256 colours." },
+      { category: "Colour depth", q: "True Colour is normally defined as which colour depth?", options: ["24-bit", "1-bit", "8-bit", "12-bit"], correct: 0, explanation: "True Colour uses 24 bits per pixel, typically 8 bits each for red, green and blue." },
+      { category: "Colour depth", q: "How many colours can 24-bit True Colour represent?", options: ["16,777,216", "256", "1,024", "24"], correct: 0, explanation: "24-bit colour provides 2²⁴ possible colour values: 16,777,216." },
+      { category: "Colour depth", q: "Which three additive primary colours are used to represent a True Colour pixel?", options: ["Red, green and blue", "Red, yellow and blue", "Cyan, magenta and yellow", "Black, white and grey"], correct: 0, explanation: "RGB is the additive colour model: red, green and blue values combine to produce colours." },
+      { category: "Bitmap effects", q: "What usually happens to a bitmap image when it is enlarged too much?", options: ["It becomes pixelated", "It gains extra detail", "It changes into a vector", "It needs fewer pixels"], correct: 0, explanation: "Enlarging bitmap pixels makes the individual squares visible, causing pixelation." },
+      { category: "Bitmap graphics", q: "Which is an advantage of bitmap graphics?", options: ["They can be edited at pixel level", "They never lose quality when scaled", "They require no storage", "They are resolution independent"], correct: 0, explanation: "Bitmap images can be manipulated pixel by pixel, which is useful for detailed editing." },
+      { category: "Bitmap graphics", q: "Which type of image is bitmap graphics especially suitable for?", options: ["Photo-realistic images", "Simple logos that must scale infinitely", "Instructions for geometric shapes only", "Text-only documents"], correct: 0, explanation: "Bitmaps can represent the rich detail and subtle colour variation found in photographs." },
+      { category: "Vector graphics", q: "What does a vector graphic store?", options: ["The attributes and instructions for shapes", "A value for every pixel", "Only the file size", "A photograph at high resolution"], correct: 0, explanation: "Vectors store shape instructions and attributes such as coordinates, fill colour and line colour." },
+      { category: "Vector graphics", q: "Which file type is a common vector graphics format?", options: ["SVG", "JPEG", "BMP", "PNG"], correct: 0, explanation: "SVG stands for Scalable Vector Graphics and is a common vector file format." },
+      { category: "Vector graphics", q: "What happens when a vector image is scaled up?", options: ["It keeps its quality", "It becomes pixelated", "Its colour depth drops", "It stores more pixels"], correct: 0, explanation: "Vector graphics are resolution independent, so they can be scaled without losing quality." },
+      { category: "Vector shapes", q: "Which attribute is needed to describe a circle in a vector graphic?", options: ["Centre coordinates and radius", "Every pixel’s binary value", "Only its width in pixels", "Its colour depth only"], correct: 0, explanation: "A circle can be recreated using its centre coordinates, radius, fill colour and line attributes." },
+      { category: "Vector shapes", q: "What information is especially important when describing a polygon?", options: ["Coordinates of each point", "The colour of every pixel", "Its screen resolution", "Its bitmap compression level"], correct: 0, explanation: "A polygon is defined by the coordinates of its vertices, alongside attributes such as fill and line colour." },
+      { category: "Storage calculation", q: "A 100 × 50 pixel bitmap uses 8-bit colour. What is its size in bits?", options: ["40,000 bits", "5,000 bits", "400 bits", "50,000 bits"], correct: 0, explanation: "Resolution = 100 × 50 = 5,000 pixels. Size = resolution × bit depth = 5,000 × 8 = 40,000 bits." }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    let answers = [];
+
+    const quizView = document.getElementById("quiz-view");
+    const resultsView = document.getElementById("results-view");
+    const questionCounter = document.getElementById("question-counter");
+    const progressBar = document.getElementById("progress-bar");
+    const liveScore = document.getElementById("live-score");
+    const category = document.getElementById("question-category");
+    const questionText = document.getElementById("question-text");
+    const answerList = document.getElementById("answer-list");
+    const feedbackPanel = document.getElementById("feedback-panel");
+    const feedbackTitle = document.getElementById("feedback-title");
+    const feedbackText = document.getElementById("feedback-text");
+    const nextButton = document.getElementById("next-button");
+
+    function renderQuestion() {
+      const question = questions[currentQuestion];
+      questionCounter.textContent = `${currentQuestion + 1} / ${questions.length}`;
+      progressBar.style.width = `${((currentQuestion + 1) / questions.length) * 100}%`;
+      liveScore.textContent = score;
+      category.textContent = question.category;
+      questionText.textContent = question.q;
+      answerList.innerHTML = "";
+      feedbackPanel.classList.add("hidden");
+      nextButton.classList.add("hidden");
+
+      question.options.forEach((option, index) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "answer-btn fade-in w-full rounded-2xl bg-white px-4 py-4 text-left font-semibold text-slate-700 sm:px-5";
+        button.style.animationDelay = `${index * 55}ms`;
+        button.setAttribute("aria-label", `Answer ${String.fromCharCode(65 + index)}: ${option}`);
+        button.innerHTML = `<span class="flex items-center gap-3"><span class="option-letter grid place-items-center rounded-lg bg-[#edf0f9] text-sm text-[#283c8e]">${String.fromCharCode(65 + index)}</span><span>${option}</span></span>`;
+        button.addEventListener("click", () => selectAnswer(index));
+        answerList.appendChild(button);
+      });
+    }
+
+    function selectAnswer(selectedIndex) {
+      const question = questions[currentQuestion];
+      const isCorrect = selectedIndex === question.correct;
+      answers[currentQuestion] = selectedIndex;
+      if (isCorrect) score += 1;
+
+      [...answerList.children].forEach((button, index) => {
+        button.disabled = true;
+        if (index === question.correct) button.classList.add("correct");
+        if (index === selectedIndex && !isCorrect) button.classList.add("incorrect");
+      });
+
+      feedbackPanel.classList.remove("hidden");
+      feedbackPanel.className = `mt-6 rounded-2xl border p-5 fade-in ${isCorrect ? "border-[#9bd2af] bg-[#edf9f1] text-[#145534]" : "border-[#efb5c0] bg-[#fff1f3] text-[#7f2637]"}`;
+      feedbackTitle.textContent = isCorrect ? "Correct — well done." : "Not quite.";
+      feedbackText.textContent = question.explanation;
+      liveScore.textContent = score;
+      nextButton.classList.remove("hidden");
+    }
+
+    function showResults() {
+      quizView.classList.add("hidden");
+      resultsView.classList.remove("hidden");
+      const percentage = Math.round((score / questions.length) * 100);
+      document.getElementById("final-score").textContent = `${score} / ${questions.length}`;
+      document.getElementById("score-message").textContent =
+        percentage >= 85 ? "Excellent work — you have a strong understanding of storing graphics." :
+        percentage >= 60 ? "Good progress — review the questions below to strengthen your knowledge." :
+        "Keep revising the key ideas, then try again to improve your score.";
+
+      const reviewList = document.getElementById("review-list");
+      reviewList.innerHTML = "";
+      questions.forEach((question, index) => {
+        const correct = answers[index] === question.correct;
+        const item = document.createElement("article");
+        item.className = `rounded-2xl border p-4 ${correct ? "border-[#b8dfc4] bg-[#f2fbf5]" : "border-[#f0c1ca] bg-[#fff6f7]"}`;
+        item.innerHTML = `
+          <div class="flex items-start gap-3">
+            <span class="mono mt-0.5 grid h-7 w-7 place-items-center rounded-md ${correct ? "bg-[#19794f] text-white" : "bg-[#b3263d] text-white"}">${correct ? "✓" : "×"}</span>
+            <div>
+              <p class="font-bold text-[#202a55]">Q${index + 1}. ${question.q}</p>
+              <p class="mt-1 text-sm text-slate-600"><strong>Correct answer:</strong> ${question.options[question.correct]}</p>
+            </div>
+          </div>`;
+        reviewList.appendChild(item);
+      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    nextButton.addEventListener("click", () => {
+      if (currentQuestion === questions.length - 1) {
+        showResults();
+      } else {
+        currentQuestion += 1;
+        renderQuestion();
+      }
+    });
+
+    document.getElementById("restart-button").addEventListener("click", () => {
+      currentQuestion = 0;
+      score = 0;
+      answers = [];
+      resultsView.classList.add("hidden");
+      quizView.classList.remove("hidden");
+      renderQuestion();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    renderQuestion();
+  </script>
+ </body>
+</html>
